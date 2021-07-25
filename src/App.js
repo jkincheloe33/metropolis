@@ -1,5 +1,7 @@
+import { Landing } from '@pages'
+
 function App() {
-  return <div>Test</div>
+  return <Landing />
 }
 
 export default App
