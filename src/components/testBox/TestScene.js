@@ -9,7 +9,7 @@ const Canvas = styled(CanvasBase)`
 
 const Wrapper = styled.div``
 
-const CityScene = () => {
+const TestScene = () => {
   return (
     <Wrapper>
       <Canvas>
@@ -21,4 +21,4 @@ const CityScene = () => {
   )
 }
 
-export default CityScene
+export default TestScene
