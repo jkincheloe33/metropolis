@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 
-import { TestScene } from '@components'
+import { CityScene } from '@components'
 
 const Wrapper = styled.div``
 
 const Landing = () => (
   <Wrapper>
-    <TestScene />
+    <CityScene />
   </Wrapper>
 )
 
