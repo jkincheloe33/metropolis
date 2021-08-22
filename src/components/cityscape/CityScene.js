@@ -3,7 +3,10 @@ import { Canvas as CanvasBase } from '@react-three/fiber'
 import styled from 'styled-components'
 
 import { colors } from '@global'
+import Bloom from './Bloom'
+// eslint-disable-next-line no-unused-vars
 import Model, { Controls } from './Model'
+import Video from './Video'
 
 const NavItem = styled.p`
   color: ${colors.yellow};
@@ -60,16 +63,20 @@ const CityScene = () => {
         <ambientLight intensity={1} />
         <pointLight position={[10, 10, 10]} />
         {/* <Controls /> */}
-        <Suspense fallback={null}>
-          <Model
-            handlePosition={handlePosition}
-            newCameraValues={newCameraValues}
-            objectLoaded={objectLoaded}
-            position={[-1000, 0, 0]}
-            rotation={[0, 0.5, 0]}
-            setObjectLoaded={setObjectLoaded}
-          />
-        </Suspense>
+        <Bloom newCameraValues={newCameraValues}>
+          <ambientLight intensity={1} />
+          <Suspense fallback={null}>
+            <Model
+              handlePosition={handlePosition}
+              newCameraValues={newCameraValues}
+              objectLoaded={objectLoaded}
+              position={[-1000, 0, 0]}
+              rotation={[0, 0.5, 0]}
+              setObjectLoaded={setObjectLoaded}
+            />
+          </Suspense>
+          <Video position={[19600, 5880, 200]} rotation={[0, -1.08, 0]} />
+        </Bloom>
       </Canvas>
     </Wrapper>
   )
