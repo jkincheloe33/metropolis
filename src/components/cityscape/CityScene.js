@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 import { colors } from '@global'
 import Bloom from './Bloom'
+import Image from './Image'
 // eslint-disable-next-line no-unused-vars
 import Model, { Controls } from './Model'
 import CustomText from './CustomText'
@@ -50,7 +51,8 @@ const CityScene = () => {
   }
 
   useEffect(() => {
-    if (objectLoaded) handlePosition({ position: [5000, 2500, 8000], rotation: [0.005, -1.1, 0] })
+    // if (objectLoaded) handlePosition({ position: [5000, 2500, 8000], rotation: [0.005, -1.1, 0] })
+    if (objectLoaded) handlePosition({ position: [8900, -10000, 5500], rotation: [0, 0.5, 0] })
   }, [objectLoaded])
 
   return (
@@ -82,6 +84,11 @@ const CityScene = () => {
             <CustomText height={1000} position={[7500, -9000, 3000]} rotation={[0, 0.5, 0]} size={10}>
               Merch
             </CustomText>
+            <CustomText height={1000} position={[7450, -9750, 2800]} rotation={[0, 0.5, 0]} size={5}>
+              Shop now &gt;&gt;
+            </CustomText>
+            <Image position={[7150, -11325, 3325]} rotation={[0, 0.5, 0]} size={[750, 750, 50]} src='./img/biometric_ryan.jpg' />
+            <Image position={[8050, -11325, 2850]} rotation={[0, 0.5, 0]} size={[750, 750, 50]} src='./img/snake_skull_ruth.jpg' />
           </Suspense>
         </Bloom>
       </Canvas>
