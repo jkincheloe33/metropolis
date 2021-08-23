@@ -2,9 +2,10 @@ import { useEffect, useRef, useState } from 'react'
 import lerp from 'lerp'
 import { extend, useFrame, useThree } from '@react-three/fiber'
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer'
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass'
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass'
 
-extend({ EffectComposer, UnrealBloomPass })
+extend({ EffectComposer, RenderPass, UnrealBloomPass })
 
 function Bloom({ children, newCameraValues }) {
   const { gl, camera, size } = useThree()

@@ -6,6 +6,7 @@ import { colors } from '@global'
 import Bloom from './Bloom'
 // eslint-disable-next-line no-unused-vars
 import Model, { Controls } from './Model'
+import CustomText from './CustomText'
 import Video from './Video'
 
 const NavItem = styled.p`
@@ -49,21 +50,22 @@ const CityScene = () => {
   }
 
   useEffect(() => {
-    if (objectLoaded) handlePosition({ position: [12000, 5000, 3800], rotation: [0, -1.1, 0] })
+    if (objectLoaded) handlePosition({ position: [5000, 2500, 8000], rotation: [0.005, -1.1, 0] })
   }, [objectLoaded])
 
   return (
     <Wrapper visible={objectLoaded}>
       <Nav>
-        <NavItem onClick={() => handlePosition({ position: [12000, 5000, 3800], rotation: [0, -1.1, 0] })}>one</NavItem>
+        <NavItem onClick={() => handlePosition({ position: [5000, 2500, 8000], rotation: [0.005, -1.1, 0] })}>one</NavItem>
         <NavItem onClick={() => handlePosition({ position: [30000, -4000, 20800], rotation: [0, 0.85, 0] })}>two</NavItem>
-        <NavItem onClick={() => handlePosition({ position: [20000, -8000, 3000], rotation: [0, 1.4, 0] })}>three</NavItem>
+        <NavItem onClick={() => handlePosition({ position: [8900, -10000, 5500], rotation: [0, 0.5, 0] })}>three</NavItem>
       </Nav>
       <Canvas camera={{ far: 50000, position: cameraValues.position }}>
-        <ambientLight intensity={1} />
-        <pointLight position={[10, 10, 10]} />
+        {/* <Canvas camera={{ far: 50000, position: [0, 0, 0] }}> */}
+        {/* <ambientLight intensity={1} /> */}
         {/* <Controls /> */}
         <Bloom newCameraValues={newCameraValues}>
+          <pointLight position={[10, 10, 10]} />
           <ambientLight intensity={1} />
           <Suspense fallback={null}>
             <Model
@@ -76,6 +78,11 @@ const CityScene = () => {
             />
           </Suspense>
           <Video position={[19600, 5880, 200]} rotation={[0, -1.08, 0]} />
+          <Suspense fallback={null}>
+            <CustomText height={1000} position={[7500, -9000, 3000]} rotation={[0, 0.5, 0]} size={10}>
+              Merch
+            </CustomText>
+          </Suspense>
         </Bloom>
       </Canvas>
     </Wrapper>
