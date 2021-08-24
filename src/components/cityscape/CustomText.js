@@ -3,8 +3,21 @@ import { useLoader } from '@react-three/fiber'
 import * as THREE from 'three'
 
 const CustomText = forwardRef(
-  ({ children, vAlign = 'center', hAlign = 'center', height = 1000, rotation = [0, 0, 0], size = 1, color = '#000000', ...props }, ref) => {
-    const font = useLoader(THREE.FontLoader, './text/digital.json')
+  (
+    {
+      children,
+      color,
+      fontFamily = './text/digital.json',
+      hAlign = 'center',
+      height = 1000,
+      rotation = [0, 0, 0],
+      size = 1,
+      vAlign = 'center',
+      ...props
+    },
+    ref
+  ) => {
+    const font = useLoader(THREE.FontLoader, fontFamily)
     const config = useMemo(() => ({ font, size: 500, height }), [font, height])
     const mesh = useRef()
 
@@ -18,10 +31,10 @@ const CustomText = forwardRef(
     }, [children])
 
     return (
-      <group ref={ref} {...props} scale={[0.1 * size, 0.1 * size, 0.1]} rotation={rotation}>
+      <group {...props} ref={ref} scale={[0.1 * size, 0.1 * size, 0.1]} rotation={rotation}>
         <mesh {...props} ref={mesh}>
           <textGeometry args={[children, config]} />
-          <meshNormalMaterial />
+          {color ? <meshBasicMaterial color={color} /> : <meshNormalMaterial />}
         </mesh>
       </group>
     )

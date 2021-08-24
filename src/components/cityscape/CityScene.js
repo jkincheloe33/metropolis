@@ -1,4 +1,5 @@
 import { Suspense, useEffect, useState } from 'react'
+import { SpotLight } from '@react-three/drei'
 import { Canvas as CanvasBase } from '@react-three/fiber'
 import styled from 'styled-components'
 
@@ -7,6 +8,7 @@ import Bloom from './Bloom'
 import Image from './Image'
 // eslint-disable-next-line no-unused-vars
 import Model, { Controls } from './Model'
+import NeonLight from './NeonLight'
 import CustomText from './CustomText'
 import Video from './Video'
 
@@ -33,6 +35,7 @@ const Canvas = styled(CanvasBase)`
 `
 
 const Wrapper = styled.div`
+  height: 100%;
   opacity: ${p => (p.visible ? 1 : 0)};
   transition: opacity 5000ms ease;
 `
@@ -51,8 +54,10 @@ const CityScene = () => {
   }
 
   useEffect(() => {
-    // if (objectLoaded) handlePosition({ position: [5000, 2500, 8000], rotation: [0.005, -1.1, 0] })
-    if (objectLoaded) handlePosition({ position: [8900, -10000, 5500], rotation: [0, 0.5, 0] })
+    if (objectLoaded) handlePosition({ position: [5000, 2500, 8000], rotation: [0.005, -1.1, 0] })
+    // if (objectLoaded) handlePosition({ position: [0, -2000, 8500], rotation: [0.005, 0.2, 0] })
+
+    // if (objectLoaded) handlePosition({ position: [8900, -10000, 5500], rotation: [0, 0.5, 0] })
   }, [objectLoaded])
 
   return (
@@ -63,11 +68,9 @@ const CityScene = () => {
         <NavItem onClick={() => handlePosition({ position: [8900, -10000, 5500], rotation: [0, 0.5, 0] })}>three</NavItem>
       </Nav>
       <Canvas camera={{ far: 50000, position: cameraValues.position }}>
-        {/* <Canvas camera={{ far: 50000, position: [0, 0, 0] }}> */}
-        {/* <ambientLight intensity={1} /> */}
         {/* <Controls /> */}
         <Bloom newCameraValues={newCameraValues}>
-          <pointLight position={[10, 10, 10]} />
+          {/* <pointLight position={[10, 10, 10]} /> */}
           <ambientLight intensity={1} />
           <Suspense fallback={null}>
             <Model
@@ -81,15 +84,26 @@ const CityScene = () => {
           </Suspense>
           <Video position={[19600, 5880, 200]} rotation={[0, -1.08, 0]} />
           <Suspense fallback={null}>
+            <CustomText fontFamily='./text/neon.json' height={1000} position={[-700, -2475, 5800]} rotation={[0, -0.05, 0]} size={10}>
+              The Deep
+            </CustomText>
             <CustomText height={1000} position={[7500, -9000, 3000]} rotation={[0, 0.5, 0]} size={10}>
               Merch
             </CustomText>
             <CustomText height={1000} position={[7450, -9750, 2800]} rotation={[0, 0.5, 0]} size={5}>
               Shop now &gt;&gt;
             </CustomText>
-            <Image position={[7150, -11325, 3325]} rotation={[0, 0.5, 0]} size={[750, 750, 50]} src='./img/biometric_ryan.jpg' />
-            <Image position={[8050, -11325, 2850]} rotation={[0, 0.5, 0]} size={[750, 750, 50]} src='./img/snake_skull_ruth.jpg' />
+            <Image position={[7150, -11325, 3325]} rotation={[0, 0.5, 0]} size={[750, 750, 50]} src='./img/biometric.png' />
+            <Image position={[8050, -11325, 2850]} rotation={[0, 0.5, 0]} size={[750, 750, 50]} src='./img/faceless.png' />
           </Suspense>
+          <NeonLight
+            points={[
+              { x: 0, y: 1, z: 1 },
+              { x: 11000, y: 1, z: 1 },
+            ]}
+            position={[2900, -10500, 5800]}
+            rotation={[0, 0.5, 0]}
+          />
         </Bloom>
       </Canvas>
     </Wrapper>
