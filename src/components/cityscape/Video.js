@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 
-const Video = ({ ...props }) => {
+const Video = ({ size, src, ...props }) => {
   const [video] = useState(() => {
     const vid = document.createElement('video')
-    vid.src = './video/liar.mp4'
+    vid.src = src
     vid.crossOrigin = 'Anonymous'
     vid.loop = true
     vid.autoplay = true
@@ -16,7 +16,7 @@ const Video = ({ ...props }) => {
 
   return (
     <mesh {...props}>
-      <boxGeometry args={[7500, 4350, 1500]} />
+      <boxGeometry args={size} />
       <meshBasicMaterial>
         <videoTexture attach='map' args={[video]} />
       </meshBasicMaterial>
