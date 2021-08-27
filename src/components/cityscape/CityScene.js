@@ -4,11 +4,11 @@ import styled from 'styled-components'
 
 import { colors } from '@global'
 
+import AccentLights from './AccentLights'
 import Bloom from './Bloom'
 import Image from './Image'
 // eslint-disable-next-line no-unused-vars
 import Model, { Controls } from './Model'
-import NeonLight from './NeonLight'
 import CustomText from './CustomText'
 import Video from './Video'
 
@@ -86,6 +86,7 @@ const CityScene = () => {
           </Suspense>
           <Video position={[19600, 5880, 200]} rotation={[0, -1.08, 0]} size={[7500, 4350, 1500]} src='./video/liar.mp4' />
           <Video position={[19600, -1000, 200]} rotation={[0, -1.08, 0]} size={[4104, 8000, 1500]} src='./video/vertical.mp4' />
+          <Video position={[7700, -9900, 3300]} rotation={[0, 0.5, 0]} size={[1800, 900, 50]} src='./video/merch.mp4' />
           <Video position={[2700, -8750, 14500]} rotation={[0, 0.5, 0]} size={[2000, 1000, 50]} src='./video/liar.mp4' />
           <Suspense fallback={null}>
             <CustomText color={colors.yellow} height={1500} position={[12000, -1000, 10000]} rotation={[0, -2.65, 0]} size={15}>
@@ -95,16 +96,16 @@ const CityScene = () => {
               color={colors.blue}
               fontFamily='./text/neon.json'
               height={1000}
-              position={[-700, -2250, 5800]}
+              position={[-700, -2500, 5800]}
               rotation={[0, -0.05, 0]}
               size={10}
             >
               The Deep
             </CustomText>
-            <CustomText height={1000} position={[7500, -9000, 3000]} rotation={[0, 0.5, 0]} size={10}>
+            <CustomText height={1000} position={[7500, -8600, 3000]} rotation={[0, 0.5, 0]} size={10}>
               Merch
             </CustomText>
-            <CustomText height={1000} position={[7450, -9750, 2800]} rotation={[0, 0.5, 0]} size={5}>
+            <CustomText height={1000} position={[7450, -9100, 2800]} rotation={[0, 0.5, 0]} size={5}>
               Shop now &gt;&gt;
             </CustomText>
             <CustomText color={colors.berry} height={1000} position={[-2800, -3000, 16900]} rotation={[0, 2.1, 0]} size={20}>
@@ -123,14 +124,7 @@ const CityScene = () => {
             <Image position={[7150, -11325, 3325]} rotation={[0, 0.5, 0]} size={[750, 750, 50]} src='./img/biometric.png' />
             <Image position={[8050, -11325, 2850]} rotation={[0, 0.5, 0]} size={[750, 750, 50]} src='./img/faceless.png' />
           </Suspense>
-          <NeonLight
-            points={[
-              { x: 0, y: 1, z: 1 },
-              { x: 11000, y: 1, z: 1 },
-            ]}
-            position={[2900, -10500, 5800]}
-            rotation={[0, 0.5, 0]}
-          />
+          <AccentLights />
         </Bloom>
       </Canvas>
     </Wrapper>

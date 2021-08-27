@@ -1,0 +1,11 @@
+Model Information:
+* title:	Billboard
+* source:	https://sketchfab.com/3d-models/billboard-47287a74a2744979b149c64ab32ee5f7
+* author:	Polina (https://sketchfab.com/arhona)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Billboard" (https://sketchfab.com/3d-models/billboard-47287a74a2744979b149c64ab32ee5f7) by Polina (https://sketchfab.com/arhona) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
