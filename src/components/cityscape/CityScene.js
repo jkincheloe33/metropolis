@@ -44,6 +44,7 @@ const angles = [
 ]
 
 const CityScene = () => {
+  const [active, setActive] = useState('Home')
   const [cameraValues, setCameraValues] = useState({
     position: [-50000, -15000, 40800],
     rotation: [0, -1.1, 0],
@@ -53,7 +54,8 @@ const CityScene = () => {
   const [newCameraValues, setNewCameraValues] = useState(cameraValues)
   const [showDetails, setShowDetails] = useState(false)
 
-  const handlePosition = coordinates => {
+  const handlePosition = (coordinates, text) => {
+    setActive(text)
     setNewCameraValues(coordinates)
     setTimeout(() => setCameraValues(coordinates), 5000)
   }
@@ -85,7 +87,7 @@ const CityScene = () => {
     <Wrapper visible={objectLoaded}>
       <Nav>
         {angles.map(({ location, text }, i) => (
-          <NavItem key={i} onClick={() => handlePosition(location)}>
+          <NavItem key={i} onClick={() => handlePosition(location, text)}>
             {text}
           </NavItem>
         ))}
@@ -116,7 +118,7 @@ const CityScene = () => {
           </Suspense> */}
 
           <Megatron />
-          <Merch />
+          <Merch active={active === 'Merch'} />
           <Tour />
 
           {/* Standalone */}
