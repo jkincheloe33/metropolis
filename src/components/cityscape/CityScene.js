@@ -2,15 +2,10 @@ import { Suspense, useEffect, useState } from 'react'
 import { Canvas as CanvasBase } from '@react-three/fiber'
 import styled from 'styled-components'
 
+import { AccentLights, Billboard, Bloom, CustomText, Drawer, Megatron, Merch, Tour } from '@components'
 import { colors } from '@global'
 
-import AccentLights from './AccentLights'
-import Bloom from './Bloom'
-import Image from './Image'
-// eslint-disable-next-line no-unused-vars
 import Model, { Controls } from './Model'
-import CustomText from './CustomText'
-import Video from './Video'
 
 const NavItem = styled.p`
   color: ${colors.yellow};
@@ -37,25 +32,50 @@ const Canvas = styled(CanvasBase)`
 const Wrapper = styled.div`
   height: 100%;
   opacity: ${p => (p.visible ? 1 : 0)};
+  position: relative;
   transition: opacity 5000ms ease;
 `
+
+const angles = [
+  { location: { position: [5000, 2500, 8000], rotation: [0.005, -1.1, 0] }, text: 'Home' },
+  { location: { position: [24000, -4000, 14000], rotation: [0, 0.85, 0] }, text: 'Music' },
+  { location: { position: [8900, -10000, 5500], rotation: [0, 0.5, 0] }, text: 'Merch' },
+  { location: { position: [2000, -7000, 8000], rotation: [0, 3, 0] }, text: 'Tour' },
+]
 
 const CityScene = () => {
   const [cameraValues, setCameraValues] = useState({
     position: [-50000, -15000, 40800],
     rotation: [0, -1.1, 0],
   })
+  const [details, setDetails] = useState(null)
   const [objectLoaded, setObjectLoaded] = useState(false)
   const [newCameraValues, setNewCameraValues] = useState(cameraValues)
+  const [showDetails, setShowDetails] = useState(false)
 
   const handlePosition = coordinates => {
     setNewCameraValues(coordinates)
     setTimeout(() => setCameraValues(coordinates), 5000)
   }
 
+  const handleCloseDetails = () => {
+    setShowDetails(false)
+    setTimeout(setDetails(null), 750)
+  }
+
+  const renderDetails = () => {
+    const Component = details?.component
+    const data = details?.data
+
+    return Component && <Component {...data} />
+  }
+
   useEffect(() => {
-    if (objectLoaded) handlePosition({ position: [4000, 2500, 6000], rotation: [0.005, -1.5, 0] })
-    // if (objectLoaded) handlePosition({ position: [4000, 2500, 6000], rotation: [0.005, -1.5, 0] })
+    if (objectLoaded) {
+      if (window.innerWidth > 768) handlePosition({ position: [4000, 2500, 6000], rotation: [0.005, -1.5, 0] })
+      else handlePosition({ position: [0, 2500, 6000], rotation: [0.005, -1.3, 0] })
+    }
+    // if (objectLoaded) handlePosition({ position: [8000, 2500, 6000], rotation: [0.005, -1, 0] })
     // if (objectLoaded) handlePosition({ position: [0, -2000, 8500], rotation: [0.005, 0.2, 0] })
 
     // if (objectLoaded) handlePosition({ position: [2000, -7000, 8000], rotation: [0, 3, 0] })
@@ -64,16 +84,22 @@ const CityScene = () => {
   return (
     <Wrapper visible={objectLoaded}>
       <Nav>
-        <NavItem onClick={() => handlePosition({ position: [5000, 2500, 8000], rotation: [0.005, -1.1, 0] })}>one</NavItem>
-        <NavItem onClick={() => handlePosition({ position: [30000, -4000, 20800], rotation: [0, 0.85, 0] })}>two</NavItem>
-        <NavItem onClick={() => handlePosition({ position: [8900, -10000, 5500], rotation: [0, 0.5, 0] })}>three</NavItem>
-        <NavItem onClick={() => handlePosition({ position: [2000, -7000, 8000], rotation: [0, 3, 0] })}>four</NavItem>
+        {angles.map(({ location, text }, i) => (
+          <NavItem key={i} onClick={() => handlePosition(location)}>
+            {text}
+          </NavItem>
+        ))}
       </Nav>
+      <Drawer handleClose={handleCloseDetails} open={showDetails}>
+        {details && renderDetails()}
+      </Drawer>
       <Canvas camera={{ far: 50000, position: cameraValues.position }}>
         {/* <Controls /> */}
         <Bloom newCameraValues={newCameraValues}>
-          {/* <pointLight position={[10, 10, 10]} /> */}
           <ambientLight intensity={1} />
+          <AccentLights />
+
+          {/* City */}
           <Suspense fallback={null}>
             <Model
               handlePosition={handlePosition}
@@ -84,13 +110,19 @@ const CityScene = () => {
               setObjectLoaded={setObjectLoaded}
             />
           </Suspense>
-          <Video position={[19600, 5880, 200]} rotation={[0, -1.08, 0]} size={[7500, 4350, 1500]} src='./video/liar.mp4' />
-          <Video position={[19600, -1000, 200]} rotation={[0, -1.08, 0]} size={[4104, 8000, 1500]} src='./video/vertical.mp4' />
-          <Video position={[7700, -9900, 3300]} rotation={[0, 0.5, 0]} size={[1800, 900, 50]} src='./video/merch.mp4' />
-          <Video position={[2700, -8750, 14500]} rotation={[0, 0.5, 0]} size={[2000, 1000, 50]} src='./video/liar.mp4' />
+
+          {/* <Suspense fallback={null}>
+            <Billboard position={[0, 0, 0]} scale={20} />
+          </Suspense> */}
+
+          <Megatron />
+          <Merch />
+          <Tour />
+
+          {/* Standalone */}
           <Suspense fallback={null}>
-            <CustomText color={colors.yellow} height={1500} position={[12000, -1000, 10000]} rotation={[0, -2.65, 0]} size={15}>
-              Glasslands
+            <CustomText color={colors.berry} height={1500} position={[12000, -1000, 10000]} rotation={[0, -2.65, 0]} size={15}>
+              The Deep
             </CustomText>
             <CustomText
               color={colors.blue}
@@ -102,29 +134,9 @@ const CityScene = () => {
             >
               The Deep
             </CustomText>
-            <CustomText height={1000} position={[7500, -8600, 3000]} rotation={[0, 0.5, 0]} size={10}>
-              Merch
-            </CustomText>
-            <CustomText height={1000} position={[7450, -9100, 2800]} rotation={[0, 0.5, 0]} size={5}>
-              Shop now &gt;&gt;
-            </CustomText>
-            <CustomText color={colors.berry} height={1000} position={[-2800, -3000, 16900]} rotation={[0, 2.1, 0]} size={20}>
-              T
-            </CustomText>
-            <CustomText color={colors.berry} height={1000} position={[-2800, -4500, 16900]} rotation={[0, 2.1, 0]} size={20}>
-              O
-            </CustomText>
-            <CustomText color={colors.berry} height={1000} position={[-2800, -6000, 16900]} rotation={[0, 2.1, 0]} size={20}>
-              U
-            </CustomText>
-            <CustomText color={colors.berry} height={1000} position={[-2800, -7500, 16900]} rotation={[0, 2.1, 0]} size={20}>
-              R
-            </CustomText>
-            {/* <Image position={[24000, 0, 7400]} rotation={[0, -1.08, 0]} size={[6000, 6000, 400]} src='./img/snake-logo-2.jpg' /> */}
-            <Image position={[7150, -11325, 3325]} rotation={[0, 0.5, 0]} size={[750, 750, 50]} src='./img/biometric.png' />
-            <Image position={[8050, -11325, 2850]} rotation={[0, 0.5, 0]} size={[750, 750, 50]} src='./img/faceless.png' />
           </Suspense>
-          <AccentLights />
+
+          {/* <Image position={[24000, 0, 7400]} rotation={[0, -1.08, 0]} size={[6000, 6000, 400]} src='./img/snake-logo-2.jpg' /> */}
         </Bloom>
       </Canvas>
     </Wrapper>

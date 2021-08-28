@@ -1,6 +1,6 @@
 import { colors } from '@global'
 
-import NeonLight from './NeonLight'
+import { NeonLight } from '@components'
 
 const AccentLights = () => (
   <>

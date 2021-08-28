@@ -11,8 +11,10 @@ function Bloom({ children, newCameraValues }) {
   const { gl, camera, size } = useThree()
   const [scene, setScene] = useState()
   const composer = useRef()
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => void scene && composer.current.setSize(size.width, size.height), [size])
+
   useFrame(() => {
     scene && composer.current.render()
 

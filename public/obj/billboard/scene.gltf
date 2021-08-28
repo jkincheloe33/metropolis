@@ -3,24 +3,24 @@
     {
       "bufferView": 2,
       "componentType": 5126,
-      "count": 10202,
+      "count": 1308,
       "max": [
-        179.30445861816406,
-        444.332763671875,
-        492.17645263671875
+        0.22146864235401154,
+        1.3548406362533569,
+        1.4601037502288818
       ],
       "min": [
-        -201.79487609863281,
-        -363.15472412109375,
-        -321.96286010742188
+        -0.22146864235401154,
+        -1.356586217880249,
+        -0.013581693172454834
       ],
       "type": "VEC3"
     },
     {
       "bufferView": 2,
-      "byteOffset": 122424,
+      "byteOffset": 15696,
       "componentType": 5126,
-      "count": 10202,
+      "count": 1308,
       "max": [
         1,
         1,
@@ -36,85 +36,23 @@
     {
       "bufferView": 1,
       "componentType": 5126,
-      "count": 10202,
+      "count": 1308,
       "max": [
-        1,
-        1
+        0.94950294494628906,
+        0.91769695281982422
       ],
       "min": [
-        0,
-        0
+        0.081924945116043091,
+        0.053770840167999268
       ],
       "type": "VEC2"
     },
     {
       "bufferView": 0,
       "componentType": 5125,
-      "count": 30792,
+      "count": 2232,
       "max": [
-        10201
-      ],
-      "min": [
-        0
-      ],
-      "type": "SCALAR"
-    },
-    {
-      "bufferView": 2,
-      "byteOffset": 244848,
-      "componentType": 5126,
-      "count": 64,
-      "max": [
-        114.8939208984375,
-        384.71875,
-        330.27066040039062
-      ],
-      "min": [
-        -60.853363037109375,
-        82.780532836914062,
-        -3.8982362747192383
-      ],
-      "type": "VEC3"
-    },
-    {
-      "bufferView": 2,
-      "byteOffset": 245616,
-      "componentType": 5126,
-      "count": 64,
-      "max": [
-        0.99996858835220337,
-        1,
-        0.99994903802871704
-      ],
-      "min": [
-        -0.99996858835220337,
-        -1,
-        -0.99994903802871704
-      ],
-      "type": "VEC3"
-    },
-    {
-      "bufferView": 1,
-      "byteOffset": 81616,
-      "componentType": 5126,
-      "count": 64,
-      "max": [
-        0,
-        0
-      ],
-      "min": [
-        0,
-        0
-      ],
-      "type": "VEC2"
-    },
-    {
-      "bufferView": 0,
-      "byteOffset": 123168,
-      "componentType": 5125,
-      "count": 198,
-      "max": [
-        63
+        1307
       ],
       "min": [
         0
@@ -124,34 +62,34 @@
   ],
   "asset": {
     "extras": {
-      "author": "Polina (https://sketchfab.com/arhona)",
+      "author": "rentless (https://sketchfab.com/rentless)",
       "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
-      "source": "https://sketchfab.com/3d-models/billboard-47287a74a2744979b149c64ab32ee5f7",
-      "title": "Billboard"
+      "source": "https://sketchfab.com/3d-models/theatre-sign-e624f92492ce48449d55cae0cc5e754a",
+      "title": "Theatre Sign"
     },
-    "generator": "Sketchfab-9.62.3",
+    "generator": "Sketchfab-9.99.1",
     "version": "2.0"
   },
   "bufferViews": [
     {
       "buffer": 0,
-      "byteLength": 123960,
+      "byteLength": 8928,
       "byteOffset": 0,
       "name": "floatBufferViews",
       "target": 34963
     },
     {
       "buffer": 0,
-      "byteLength": 82128,
-      "byteOffset": 123960,
+      "byteLength": 10464,
+      "byteOffset": 8928,
       "byteStride": 8,
       "name": "floatBufferViews",
       "target": 34962
     },
     {
       "buffer": 0,
-      "byteLength": 246384,
-      "byteOffset": 206088,
+      "byteLength": 31392,
+      "byteOffset": 19392,
       "byteStride": 12,
       "name": "floatBufferViews",
       "target": 34962
@@ -159,8 +97,13 @@
   ],
   "buffers": [
     {
-      "byteLength": 452472,
+      "byteLength": 50784,
       "uri": "scene.bin"
+    }
+  ],
+  "images": [
+    {
+      "uri": "textures/Material_baseColor.png"
     }
   ],
   "materials": [
@@ -171,41 +114,26 @@
         0,
         0
       ],
-      "name": "lambert1",
+      "name": "Material",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
-          0.5,
-          0.5,
-          0.5,
+          1,
+          1,
+          1,
           1
         ],
+        "baseColorTexture": {
+          "index": 0,
+          "texCoord": 0
+        },
         "metallicFactor": 0,
-        "roughnessFactor": 0.59999999999999998
-      }
-    },
-    {
-      "doubleSided": true,
-      "emissiveFactor": [
-        0,
-        0,
-        0
-      ],
-      "name": "blinn1",
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          0.5,
-          0.5,
-          0.5,
-          1
-        ],
-        "metallicFactor": 0,
-        "roughnessFactor": 0.93943736178313975
+        "roughnessFactor": 0.80404082057734572
       }
     }
   ],
   "meshes": [
     {
-      "name": "pPlane54_lambert1_0",
+      "name": "theatresign_Material_0",
       "primitives": [
         {
           "attributes": {
@@ -215,21 +143,6 @@
           },
           "indices": 3,
           "material": 0,
-          "mode": 4
-        }
-      ]
-    },
-    {
-      "name": "pPlane54_blinn1_0",
-      "primitives": [
-        {
-          "attributes": {
-            "NORMAL": 5,
-            "POSITION": 4,
-            "TEXCOORD_0": 6
-          },
-          "indices": 7,
-          "material": 1,
           "mode": 4
         }
       ]
@@ -276,7 +189,7 @@
         0,
         1
       ],
-      "name": "73e4bbe21f51476fac85422d300ebf32.fbx"
+      "name": "97b533609aa94b399f251a4fd121e26b.fbx"
     },
     {
       "children": [
@@ -286,18 +199,39 @@
     },
     {
       "children": [
-        5,
-        6
+        5
       ],
-      "name": "pPlane54"
+      "matrix": [
+        100,
+        0,
+        0,
+        0,
+        0,
+        -1.6292067939183141e-05,
+        -99.999999999998678,
+        0,
+        0,
+        99.999999999998678,
+        -1.6292067939183141e-05,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "name": "theatresign"
     },
     {
       "mesh": 0,
-      "name": "pPlane54_lambert1_0"
-    },
+      "name": "theatresign_Material_0"
+    }
+  ],
+  "samplers": [
     {
-      "mesh": 1,
-      "name": "pPlane54_blinn1_0"
+      "magFilter": 9729,
+      "minFilter": 9987,
+      "wrapS": 10497,
+      "wrapT": 10497
     }
   ],
   "scene": 0,
@@ -307,6 +241,12 @@
       "nodes": [
         0
       ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
     }
   ]
 }
