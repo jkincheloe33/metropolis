@@ -2,7 +2,7 @@ import { Suspense, useEffect, useState } from 'react'
 import { Canvas as CanvasBase } from '@react-three/fiber'
 import styled from 'styled-components'
 
-import { AccentLights, Billboard, Bloom, CustomText, Drawer, Megatron, Merch, Tour } from '@components'
+import { AccentLights, Billboard, Bloom, CustomText, Drawer, Megatron, Merch, Tour, Watch } from '@components'
 import { colors } from '@global'
 
 import Model, { Controls } from './Model'
@@ -38,13 +38,13 @@ const Wrapper = styled.div`
 
 const angles = [
   { location: { position: [5000, 2500, 8000], rotation: [0.005, -1.1, 0] }, text: 'Home' },
-  { location: { position: [24000, -4000, 14000], rotation: [0, 0.85, 0] }, text: 'Music' },
+  { location: { position: [18500, -4000, 6800], rotation: [0, -4.2, 0] }, text: 'Watch' },
   { location: { position: [8900, -10000, 5500], rotation: [0, 0.5, 0] }, text: 'Merch' },
   { location: { position: [2000, -7000, 8000], rotation: [0, 3, 0] }, text: 'Tour' },
 ]
 
 const CityScene = () => {
-  const [active, setActive] = useState('Home')
+  const [active, setActive] = useState('Watch')
   const [cameraValues, setCameraValues] = useState({
     position: [-50000, -15000, 40800],
     rotation: [0, -1.1, 0],
@@ -77,10 +77,6 @@ const CityScene = () => {
       if (window.innerWidth > 768) handlePosition({ position: [4000, 2500, 6000], rotation: [0.005, -1.5, 0] })
       else handlePosition({ position: [0, 2500, 6000], rotation: [0.005, -1.3, 0] })
     }
-    // if (objectLoaded) handlePosition({ position: [8000, 2500, 6000], rotation: [0.005, -1, 0] })
-    // if (objectLoaded) handlePosition({ position: [0, -2000, 8500], rotation: [0.005, 0.2, 0] })
-
-    // if (objectLoaded) handlePosition({ position: [2000, -7000, 8000], rotation: [0, 3, 0] })
   }, [objectLoaded])
 
   return (
@@ -118,6 +114,7 @@ const CityScene = () => {
           </Suspense> */}
 
           <Megatron />
+          <Watch active={active === 'Watch'} />
           <Merch active={active === 'Merch'} />
           <Tour />
 

@@ -8,3 +8,10 @@ export const merchData = [
   './img/deadman_ryan.jpg',
   './img/logo_ruth.jpg',
 ]
+
+export const watchData = [
+  'youtube.com/watch?v=7uJ_8BVmQHQ',
+  'https://www.youtube.com/watch?v=SUL-KwIaSpI',
+  'https://www.youtube.com/watch?v=bu8MW33pYe4',
+  'https://www.youtube.com/watch?v=nEWvTAS34rw',
+]

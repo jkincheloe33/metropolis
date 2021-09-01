@@ -2,7 +2,7 @@ import { Suspense } from 'react'
 import { Html } from '@react-three/drei'
 import styled from 'styled-components'
 
-import { CustomText, Image, Video } from '@components'
+import { CustomText, NeonLight } from '@components'
 import { colors, merchData } from '@global'
 
 const Shirt = styled.div`
@@ -43,10 +43,7 @@ const Merch = ({ active }) => {
           </Wrapper>
         </Html>
       </mesh>
-      {/* <Video position={[7700, -9900, 3300]} rotation={[0, 0.5, 0]} size={[1800, 900, 50]} src='./video/merch.mp4' /> */}
       <Suspense fallback={null}>
-        {/* <Image position={[7150, -9000, 3325]} rotation={[0, 0.5, 0]} size={[3000, 2001, 50]} src='./img/creeps_ruth.jpg' />
-        <Image position={[8050, -9000, 2850]} rotation={[0, 0.5, 0]} size={[750, 750, 50]} src='./img/faceless.png' /> */}
         <CustomText height={1000} position={[7500, -8700, 3000]} rotation={[0, 0.5, 0]} size={5}>
           Threads
         </CustomText>
@@ -74,6 +71,19 @@ const Merch = ({ active }) => {
           Merchandise
         </CustomText>
       </Suspense>
+
+      {/* <NeonLight
+        points={[
+          { x: 0, y: 1, z: 1 },
+          { x: 10000, y: 1, z: 1 },
+          { x: 11000, y: 1, z: 1 },
+          { x: 11000, y: 5000, z: 1 },
+          { x: 0, y: 5000, z: 1 },
+          { x: 0, y: 1, z: 1 },
+        ]}
+        position={[0, 0, 0]}
+        rotation={[0, 0.5, 0]}
+      /> */}
     </>
   )
 }
