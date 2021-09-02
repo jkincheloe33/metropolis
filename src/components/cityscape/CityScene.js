@@ -44,7 +44,7 @@ const angles = [
 ]
 
 const CityScene = () => {
-  const [active, setActive] = useState('Watch')
+  const [active, setActive] = useState('Home')
   const [cameraValues, setCameraValues] = useState({
     position: [-50000, -15000, 40800],
     rotation: [0, -1.1, 0],
@@ -109,9 +109,9 @@ const CityScene = () => {
             />
           </Suspense>
 
-          {/* <Suspense fallback={null}>
-            <Billboard position={[0, 0, 0]} scale={20} />
-          </Suspense> */}
+          <Suspense fallback={null}>
+            <Billboard position={[7500, -1200, 1500]} rotation={[0, 2.05, 3.15]} scale={20} />
+          </Suspense>
 
           <Megatron />
           <Watch active={active === 'Watch'} />

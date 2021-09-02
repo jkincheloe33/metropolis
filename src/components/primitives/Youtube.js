@@ -2,6 +2,8 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
+import { colors } from '@global'
+
 const VideoWrapper = styled.iframe`
   display: block;
   left: 0;
@@ -12,6 +14,7 @@ const VideoWrapper = styled.iframe`
 `
 
 const Wrapper = styled.div`
+  box-shadow: 0 0 15px ${colors.berry};
   overflow: hidden;
   padding-bottom: 56.25%;
   position: relative;
