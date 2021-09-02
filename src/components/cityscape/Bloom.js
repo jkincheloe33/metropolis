@@ -20,13 +20,13 @@ function Bloom({ children, newCameraValues }) {
 
     const { position, rotation } = newCameraValues
 
-    // camera.rotation.x = lerp(camera.rotation.x, rotation[0], 0.015)
-    // camera.rotation.y = lerp(camera.rotation.y, rotation[1], 0.015)
-    // camera.rotation.z = lerp(camera.rotation.z, rotation[2], 0.015)
+    camera.rotation.x = lerp(camera.rotation.x, rotation[0], 0.015)
+    camera.rotation.y = lerp(camera.rotation.y, rotation[1], 0.015)
+    camera.rotation.z = lerp(camera.rotation.z, rotation[2], 0.015)
 
-    // camera.position.x = lerp(camera.position.x, position[0], 0.015)
-    // camera.position.y = lerp(camera.position.y, position[1], 0.015)
-    // camera.position.z = lerp(camera.position.z, position[2], 0.015)
+    camera.position.x = lerp(camera.position.x, position[0], 0.015)
+    camera.position.y = lerp(camera.position.y, position[1], 0.015)
+    camera.position.z = lerp(camera.position.z, position[2], 0.015)
   }, 2)
 
   return (

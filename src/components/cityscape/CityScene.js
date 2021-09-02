@@ -92,7 +92,7 @@ const CityScene = () => {
         {details && renderDetails()}
       </Drawer>
       <Canvas camera={{ far: 50000, position: cameraValues.position }}>
-        <Controls />
+        {/* <Controls /> */}
         <Bloom newCameraValues={newCameraValues}>
           <ambientLight intensity={1} />
           <AccentLights />
