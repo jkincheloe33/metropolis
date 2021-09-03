@@ -18,8 +18,8 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "node --max_old_space_size=2560 node_modules/.bin/craco start",
-    "build": "node --max_old_space_size=2560 node_modules/.bin/craco build",
+    "start": "node --max_old_space_size=460 node_modules/.bin/craco start",
+    "build": "node --max_old_space_size=460 node_modules/.bin/craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
   },
