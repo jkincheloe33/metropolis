@@ -14,14 +14,14 @@ const AccentLights = () => (
       rotation={[0, 0.5, 0]}
     />
     {/* sega building */}
-    {/* <NeonLight
+    <NeonLight
       points={[
         { x: 0, y: 1, z: 1 },
         { x: 14000, y: 1, z: 1 },
       ]}
       position={[13300, -12250, -1100]}
       rotation={[0, 0, 1.56]}
-    /> */}
+    />
     {/* red lights */}
     <NeonLight
       color={colors.berry}
