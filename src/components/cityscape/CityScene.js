@@ -49,7 +49,7 @@ const angles = [
 ]
 
 const CityScene = () => {
-  const [active, setActive] = useState('Merch')
+  const [active, setActive] = useState('Home')
   const [cameraValues, setCameraValues] = useState({
     // position: [-50000, -15000, 40800],
     position: [0, 0, -200],
@@ -124,7 +124,7 @@ const CityScene = () => {
           <Megatron />
           <Watch active={active === 'Watch'} />
           <Merch active={active === 'Merch'} />
-          {/* <Tour /> */}
+          <Tour />
 
           {/* Standalone */}
           {/* <Suspense fallback={null}>

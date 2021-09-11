@@ -23,7 +23,7 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
   height: 60vh;
   justify-content: space-between;
-  /* opacity: ${p => (p.active ? 1 : 0)}; */
+  opacity: ${p => (p.active ? 1 : 0)};
   overflow: auto;
   padding: 15.6px 15.6px 0;
   transform: ${p => (p.active ? 'translate(-167.5px, -100px)' : 'translate(-167.5px, 300px)')};
