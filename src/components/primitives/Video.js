@@ -3,11 +3,12 @@ import { useEffect, useState } from 'react'
 const Video = ({ size, src, ...props }) => {
   const [video] = useState(() => {
     const vid = document.createElement('video')
-    vid.src = src
+    vid.autoplay = true
     vid.crossOrigin = 'Anonymous'
     vid.loop = true
-    vid.autoplay = true
     vid.muted = true
+    vid.playsInline = true
+    vid.src = src
     return vid
   })
 

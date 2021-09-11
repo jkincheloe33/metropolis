@@ -18,7 +18,7 @@ const Wrapper = styled.div`
   border-radius: 20px;
   display: flex;
   flex-wrap: wrap;
-  height: 66vh;
+  height: 73vh;
   justify-content: space-between;
   opacity: ${p => (p.active ? 1 : 0)};
   overflow: auto;
@@ -31,7 +31,7 @@ const Wrapper = styled.div`
 const Watch = ({ active }) => {
   return (
     <>
-      <mesh position={[-22000, 0, 29250]}>
+      <mesh position={[-100, 80, 12]}>
         <Html>
           <Wrapper active={active}>
             {watchData.map((data, i) => (
@@ -46,10 +46,10 @@ const Watch = ({ active }) => {
         <CustomText
           color={colors.aqua}
           // fontFamily='./text/neon.json'
-          height={500}
-          position={[13900, -2150, 9400]}
+          height={5}
+          position={[108, 50, -104]}
           rotation={[0, 2.1, 0]}
-          size={9}
+          size={0.4}
         >
           Music Videos
         </CustomText>

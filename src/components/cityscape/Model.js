@@ -26,7 +26,8 @@ const Model = ({ newCameraValues, objectLoaded, setObjectLoaded, ...props }) => 
   }
 
   useEffect(() => {
-    new GLTFLoader(manager).load('./obj/city/scene.gltf', setModel)
+    new GLTFLoader(manager).load('./obj/testCity/scene.gltf', setModel)
+    // new GLTFLoader(manager).load('./obj/city/scene.gltf', setModel)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

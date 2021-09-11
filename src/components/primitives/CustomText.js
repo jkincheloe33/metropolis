@@ -18,7 +18,7 @@ const CustomText = forwardRef(
     ref
   ) => {
     const font = useLoader(THREE.FontLoader, fontFamily)
-    const config = useMemo(() => ({ font, size: 500, height }), [font, height])
+    const config = useMemo(() => ({ font, size: 50, height }), [font, height])
     const mesh = useRef()
 
     useLayoutEffect(() => {

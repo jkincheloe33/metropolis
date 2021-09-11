@@ -7,7 +7,7 @@ const NeonLight = ({ color = colors.aqua, points = [], ...props }) => {
 
   return (
     <mesh {...props}>
-      <tubeGeometry args={[curve, 70, 10, 50, true]} />
+      <tubeGeometry args={[curve, 70, 0.05, 50, true]} />
       <meshStandardMaterial color={color} side={THREE.DoubleSide} metalness={0.4} />
     </mesh>
   )

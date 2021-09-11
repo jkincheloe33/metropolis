@@ -37,16 +37,22 @@ const Wrapper = styled.div`
 `
 
 const angles = [
-  { location: { position: [5000, 2500, 8000], rotation: [0.005, -1.1, 0] }, text: 'Home' },
-  { location: { position: [18500, -4000, 6800], rotation: [0, -4.2, 0] }, text: 'Watch' },
-  { location: { position: [8900, -10000, 5500], rotation: [0, 0.5, 0] }, text: 'Merch' },
-  { location: { position: [2000, -7000, 8000], rotation: [0, 3, 0] }, text: 'Tour' },
+  // { location: { position: [5000, 2500, 8000], rotation: [0.005, -1.1, 0] }, text: 'Home' },
+  // { location: { position: [18500, -4000, 6800], rotation: [0, -4.2, 0] }, text: 'Watch' },
+  // { location: { position: [8900, -10000, 5500], rotation: [0, 0.5, 0] }, text: 'Merch' },
+  // { location: { position: [2000, -7000, 8000], rotation: [0, 3, 0] }, text: 'Tour' },
+
+  { location: { position: [26, 75, -114], rotation: [0, -1.3, 0] }, text: 'Home' },
+  { location: { position: [117, 41, -109], rotation: [0, -4.2, 0] }, text: 'Watch' },
+  { location: { position: [69, 11, -115.5], rotation: [0, 0.5, 0] }, text: 'Merch' },
+  { location: { position: [35, 27, -103], rotation: [0, 3, 0] }, text: 'Tour' },
 ]
 
 const CityScene = () => {
-  const [active, setActive] = useState('Home')
+  const [active, setActive] = useState('Merch')
   const [cameraValues, setCameraValues] = useState({
-    position: [-50000, -15000, 40800],
+    // position: [-50000, -15000, 40800],
+    position: [0, 0, -200],
     rotation: [0, -1.1, 0],
   })
   const [details, setDetails] = useState(null)
@@ -74,8 +80,9 @@ const CityScene = () => {
 
   useEffect(() => {
     if (objectLoaded) {
-      if (window.innerWidth > 768) handlePosition({ position: [4000, 2500, 6000], rotation: [0.005, -1.5, 0] })
-      else handlePosition({ position: [0, 2500, 6000], rotation: [0.005, -1.3, 0] })
+      handlePosition({ position: [26, 75, -114], rotation: [0, -1.3, 0] })
+      // if (window.innerWidth > 768) handlePosition({ position: [4000, 2500, 6000], rotation: [0.005, -1.5, 0] })
+      // else handlePosition({ position: [0, 2500, 6000], rotation: [0.005, -1.3, 0] })
     }
   }, [objectLoaded])
 
@@ -103,23 +110,24 @@ const CityScene = () => {
               handlePosition={handlePosition}
               newCameraValues={newCameraValues}
               objectLoaded={objectLoaded}
-              position={[-1000, 0, 0]}
+              // position={[-1000, 0, 0]}
+              position={[0, 0, 0]}
               rotation={[0, 0.5, 0]}
               setObjectLoaded={setObjectLoaded}
             />
           </Suspense>
 
-          <Suspense fallback={null}>
+          {/* <Suspense fallback={null}>
             <Billboard position={[7500, -1200, 1500]} rotation={[0, 2.05, 3.15]} scale={20} />
-          </Suspense>
+          </Suspense> */}
 
           <Megatron />
           <Watch active={active === 'Watch'} />
           <Merch active={active === 'Merch'} />
-          <Tour />
+          {/* <Tour /> */}
 
           {/* Standalone */}
-          <Suspense fallback={null}>
+          {/* <Suspense fallback={null}>
             <CustomText color={colors.berry} height={1500} position={[12000, -1000, 10000]} rotation={[0, -2.65, 0]} size={15}>
               The Deep
             </CustomText>
@@ -133,7 +141,7 @@ const CityScene = () => {
             >
               The Deep
             </CustomText>
-          </Suspense>
+          </Suspense> */}
 
           {/* <Image position={[24000, 0, 7400]} rotation={[0, -1.08, 0]} size={[6000, 6000, 400]} src='./img/snake-logo-2.jpg' /> */}
         </Bloom>
