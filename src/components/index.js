@@ -12,6 +12,7 @@ export { default as Bloom } from './cityscape/Bloom'
 export { default as Drawer } from './Drawer'
 export { default as Megatron } from './Megatron'
 export { default as Merch } from './Merch'
+export { default as Navigation } from './Navigation'
 export { default as Tour } from './Tour'
 export { default as Watch } from './Watch'
 

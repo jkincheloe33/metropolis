@@ -2,7 +2,7 @@ import { Suspense } from 'react'
 import { Html } from '@react-three/drei'
 import styled from 'styled-components'
 
-import { CustomText, NeonLight } from '@components'
+import { CustomText } from '@components'
 import { colors, merchData } from '@global'
 
 const Shirt = styled.div`
@@ -71,19 +71,6 @@ const Merch = ({ active }) => {
           Merchandise
         </CustomText>
       </Suspense>
-
-      {/* <NeonLight
-        points={[
-          { x: 0, y: 1, z: 1 },
-          { x: 10000, y: 1, z: 1 },
-          { x: 11000, y: 1, z: 1 },
-          { x: 11000, y: 5000, z: 1 },
-          { x: 0, y: 5000, z: 1 },
-          { x: 0, y: 1, z: 1 },
-        ]}
-        position={[0, 0, 0]}
-        rotation={[0, 0.5, 0]}
-      /> */}
     </>
   )
 }

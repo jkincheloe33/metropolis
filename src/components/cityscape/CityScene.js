@@ -2,28 +2,9 @@ import { Suspense, useEffect, useState } from 'react'
 import { Canvas as CanvasBase } from '@react-three/fiber'
 import styled from 'styled-components'
 
-import { AccentLights, Billboard, Bloom, CustomText, Drawer, Megatron, Merch, Tour, Watch } from '@components'
-import { colors } from '@global'
+import { AccentLights, Billboard, Bloom, CustomText, Drawer, Megatron, Merch, Navigation, Tour, Watch } from '@components'
 
 import Model, { Controls } from './Model'
-
-const NavItem = styled.p`
-  color: ${colors.yellow};
-  cursor: pointer;
-  font-size: 20px;
-  margin-right: 10px;
-  text-shadow: 0 0 20px ${colors.yellow};
-`
-
-const Nav = styled.div`
-  color: white;
-  display: flex;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1;
-`
 
 const Canvas = styled(CanvasBase)`
   min-height: 100vh;
@@ -88,13 +69,7 @@ const CityScene = () => {
 
   return (
     <Wrapper visible={objectLoaded}>
-      <Nav>
-        {angles.map(({ location, text }, i) => (
-          <NavItem key={i} onClick={() => handlePosition(location, text)}>
-            {text}
-          </NavItem>
-        ))}
-      </Nav>
+      <Navigation angles={angles} handlePosition={handlePosition} />
       <Drawer handleClose={handleCloseDetails} open={showDetails}>
         {details && renderDetails()}
       </Drawer>
