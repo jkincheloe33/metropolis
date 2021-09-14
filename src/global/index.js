@@ -5,12 +5,18 @@ export * from './data'
 export * from './theme'
 
 export const GlobalStyles = createGlobalStyle`
+  @font-face {
+    font-family: 'Digital-7';
+    src: local('Digital-7'), url(./text/digital-7.ttf) format('truetype');
+  }
+
   body {
     overflow-x: hidden;
 
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;900&display=swap');
+
     h1, h2, h3, h4, h5, h6, p, a {
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Digital-7', sans-serif;
     }
   }
   body,

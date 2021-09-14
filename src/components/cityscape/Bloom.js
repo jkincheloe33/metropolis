@@ -34,7 +34,7 @@ function Bloom({ children, newCameraValues }) {
       <scene ref={setScene}>{children}</scene>
       <effectComposer ref={composer} args={[gl]}>
         <renderPass attachArray='passes' scene={scene} camera={camera} />
-        {/* <unrealBloomPass attachArray='passes' args={[undefined, 1.5, 1, 0.4]} /> */}
+        <unrealBloomPass attachArray='passes' args={[undefined, 1.5, 1, 0.4]} />
       </effectComposer>
     </>
   )

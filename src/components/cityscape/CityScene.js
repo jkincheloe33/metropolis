@@ -23,14 +23,14 @@ const angles = [
   // { location: { position: [8900, -10000, 5500], rotation: [0, 0.5, 0] }, text: 'Merch' },
   // { location: { position: [2000, -7000, 8000], rotation: [0, 3, 0] }, text: 'Tour' },
 
-  { location: { position: [26, 75, -114], rotation: [0, -1.3, 0] }, text: 'Home' },
+  { location: { position: [26, 75, -114], rotation: [0, -1.3, 0] }, text: 'Glasslands' },
   { location: { position: [117, 41, -109], rotation: [0, -4.2, 0] }, text: 'Watch' },
   { location: { position: [69, 11, -115.5], rotation: [0, 0.5, 0] }, text: 'Merch' },
   { location: { position: [35, 27, -103], rotation: [0, 3, 0] }, text: 'Tour' },
 ]
 
 const CityScene = () => {
-  const [active, setActive] = useState('Home')
+  const [active, setActive] = useState('Glasslands')
   const [cameraValues, setCameraValues] = useState({
     // position: [-50000, -15000, 40800],
     position: [0, 0, -200],

@@ -6,6 +6,7 @@ import { colors } from '@global'
 // prettier-ignore
 const Bar = styled.div`
   background-color: ${colors.white};
+  box-shadow: 0 0 5px ${colors.yellow};
   border-radius: 12px;
   height: 2px;
   left: 0;
@@ -44,6 +45,9 @@ const Hamburger = styled.div`
   height: 19px;
   position: relative;
   width: 24px;
+
+  height: 25px;
+  width: 32px;
 `
 
 const HamburgerWrapper = styled.div`
@@ -51,41 +55,95 @@ const HamburgerWrapper = styled.div`
   position: fixed;
   right: 20px;
   top: 20px;
-  z-index: 2;
+  // needed to be over react/three-drei Html
+  z-index: 20000000;
+`
+
+const Main = styled.div`
+  align-items: flex-end;
+  background-color: ${colors.black}D9;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  opacity: ${p => (p.open ? 1 : 0)};
+  padding-right: 29px;
+  transform: ${p => (p.open ? 'translateX(0)' : 'translateX(100%)')};
+  transition: opacity 500ms ease-in-out, transform 1000ms cubic-bezier(0.77, 0, 0.175, 1);
+  width: 100%;
 `
 
 const NavItem = styled.p`
   color: ${colors.yellow};
   cursor: pointer;
-  font-size: 20px;
-  margin-right: 10px;
-  text-shadow: 0 0 20px ${colors.yellow};
+  font-size: 65px;
+  margin-bottom: 35px;
+  opacity: ${p => (p.open ? 1 : 0)};
+  transform: ${p => (p.open ? 'translateX(0)' : 'translateX(200%)')};
+  transform-origin: center right;
+  transition: all 1500ms ease;
+  transition-delay: ${p => p.index * 100 + 100}ms;
+
+  &:hover {
+    text-shadow: 0 0 10px ${colors.yellow};
+    transform: scale(1.1);
+    transition: all 500ms ease;
+    transition-delay: 0;
+  }
+`
+
+const Container = styled.div`
+  display: flex;
+  height: 100%;
+  position: relative;
+
+  img {
+    left: 18px;
+    opacity: ${p => (p.open ? 1 : 0)};
+    position: absolute;
+    top: 12px;
+    transform: ${p => (p.open ? 'translateX(0)' : 'translateX(300px)')};
+    transition: all 1500ms ease;
+    width: 40px;
+    z-index: 20000001;
+  }
 `
 
 const Wrapper = styled.div`
-  background-color: green;
   height: 100%;
-  left: 0;
+  max-width: 500px;
   opacity: ${p => (p.open ? 1 : 0)};
+  pointer-events: ${p => (p.open ? 'auto' : 'none')};
   position: fixed;
+  right: 0;
   top: 0;
-  transform: ${p => (p.open ? 'rotate3d(0, 0, 0, 0deg) translateX(0)' : 'rotate3d(0, 1, 0, 90deg) translateX(100%)')};
-  transition: all 500ms ease;
+  transition: all 500ms cubic-bezier(0.7, 0, 0.5, 0.5);
   width: 100%;
-  z-index: 2;
+  // needed to be over react/three-drei Html
+  z-index: 20000000;
 `
 
 const Navigation = ({ angles, handlePosition }) => {
   const [open, setOpen] = useState(false)
 
+  const handleClick = (location, text) => {
+    handlePosition(location, text)
+    setOpen(false)
+  }
+
   return (
     <>
       <Wrapper open={open}>
-        {angles.map(({ location, text }, i) => (
-          <NavItem key={i} onClick={() => handlePosition(location, text)}>
-            {text}
-          </NavItem>
-        ))}
+        <Container open={open}>
+          <img alt='logo' src='./img/Logo-White.png' />
+          <Main open={open}>
+            {angles.map(({ location, text }, i) => (
+              <NavItem index={i} key={i} onClick={() => handleClick(location, text)} open={open}>
+                {text}
+              </NavItem>
+            ))}
+          </Main>
+        </Container>
       </Wrapper>
       <HamburgerWrapper>
         <Hamburger onClick={() => setOpen(open => !open)}>
