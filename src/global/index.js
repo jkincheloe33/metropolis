@@ -3,6 +3,7 @@ import resetCSS from './reset'
 
 export * from './data'
 export * from './theme'
+export * from './utils'
 
 export const GlobalStyles = createGlobalStyle`
   @font-face {

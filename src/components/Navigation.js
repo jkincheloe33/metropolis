@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import styled from 'styled-components'
 
-import { colors } from '@global'
+import { colors, media } from '@global'
 
 // prettier-ignore
 const Bar = styled.div`
@@ -90,6 +90,10 @@ const NavItem = styled.p`
     transition: all 500ms ease;
     transition-delay: 0;
   }
+
+  ${media.down.md`
+    font-size: 50px;
+  `}
 `
 
 const Container = styled.div`
