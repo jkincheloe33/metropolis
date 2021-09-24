@@ -73,6 +73,7 @@ const Wrapper = styled.div`
   justify-content: center;
   left: 0;
   opacity: ${p => (p.visible ? 1 : 0)};
+  pointer-events: ${p => (p.visible ? 'auto' : 'none')};
   position: fixed;
   right: 0;
   top: 0;
