@@ -2,27 +2,22 @@ import { Suspense, useEffect, useState } from 'react'
 import { Canvas as CanvasBase } from '@react-three/fiber'
 import styled from 'styled-components'
 
-import { AccentLights, Billboard, Bloom, CustomText, Drawer, Megatron, Merch, Navigation, Tour, Watch } from '@components'
+import { AccentLights, Billboard, Bloom, CustomText, Drawer, Loader, Megatron, Merch, Navigation, Tour, Watch } from '@components'
 
 import Model, { Controls } from './Model'
 
 const Canvas = styled(CanvasBase)`
   min-height: 100vh;
+  opacity: ${p => (p.visible ? 1 : 0)};
+  transition: opacity 5000ms ease;
 `
 
 const Wrapper = styled.div`
   height: 100%;
-  opacity: ${p => (p.visible ? 1 : 0)};
   position: relative;
-  transition: opacity 5000ms ease;
 `
 
 const angles = [
-  // { location: { position: [5000, 2500, 8000], rotation: [0.005, -1.1, 0] }, text: 'Home' },
-  // { location: { position: [18500, -4000, 6800], rotation: [0, -4.2, 0] }, text: 'Watch' },
-  // { location: { position: [8900, -10000, 5500], rotation: [0, 0.5, 0] }, text: 'Merch' },
-  // { location: { position: [2000, -7000, 8000], rotation: [0, 3, 0] }, text: 'Tour' },
-
   { location: { position: [26, 75, -114], rotation: [0, -1.3, 0] }, text: 'Glasslands' },
   { location: { position: [117, 41, -109], rotation: [0, -4.2, 0] }, text: 'Watch' },
   { location: { position: [69, 11, -115.5], rotation: [0, 0.5, 0] }, text: 'Merch' },
@@ -32,7 +27,6 @@ const angles = [
 const CityScene = () => {
   const [active, setActive] = useState('Glasslands')
   const [cameraValues, setCameraValues] = useState({
-    // position: [-50000, -15000, 40800],
     position: [0, 0, -200],
     rotation: [0, -1.1, 0],
   })
@@ -68,12 +62,13 @@ const CityScene = () => {
   }, [objectLoaded])
 
   return (
-    <Wrapper visible={objectLoaded}>
+    <Wrapper>
+      <Loader visible={!objectLoaded} />
       <Navigation angles={angles} handlePosition={handlePosition} />
       <Drawer handleClose={handleCloseDetails} open={showDetails}>
         {details && renderDetails()}
       </Drawer>
-      <Canvas camera={{ far: 50000, position: cameraValues.position }}>
+      <Canvas camera={{ far: 50000, position: cameraValues.position }} visible={objectLoaded}>
         {/* <Controls /> */}
         <Bloom newCameraValues={newCameraValues}>
           <ambientLight intensity={1} />
