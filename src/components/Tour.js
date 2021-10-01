@@ -1,12 +1,44 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/anchor-has-content */
 import { Suspense } from 'react'
-import { colors } from '@global'
+import { Html } from '@react-three/drei'
+import styled from 'styled-components'
 
 import { CustomText, Video } from '@components'
+import { colors } from '@global'
+
+const Wrapper = styled.div`
+  /* transform: translate(0, 0); */
+`
 
 const Tour = () => {
   return (
     <>
       <Video position={[38.5, 18, -69]} rotation={[0, 0.5, 0]} size={[10, 5, 1]} src='./video/liar.mp4' />
+      <Html>
+        <Wrapper>
+          <a
+            className='bit-widget-initializer'
+            data-artist-name='Glasslands'
+            data-display-past-dates='true'
+            data-text-color='#000000'
+            data-link-color='#A2A2A2'
+            data-background-color='#ffffff'
+            data-display-details='false'
+            data-popup-background-color='#ffffff'
+            data-link-text-color='#FFFFFF'
+            data-separator-color='#CBCBCB'
+            data-language='en'
+            data-font='Helvetica'
+            data-display-local-dates='false'
+            data-auto-style='false'
+            data-display-lineup='false'
+            data-display-play-my-city='true'
+            data-display-limit='15'
+            data-display-start-time='false'
+          />
+        </Wrapper>
+      </Html>
       <Suspense fallback={null}>
         {/* <CustomText
           color={colors.berry}
