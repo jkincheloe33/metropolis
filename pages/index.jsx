@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <Wrapper>
       <Head>
-        <title>Glasslands Next App</title>
+        <title>Glasslands</title>
         {/* <link rel='icon' href='/favicon.ico' /> */}
 
         <meta charSet='utf-8' />
