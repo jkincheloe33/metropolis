@@ -1,9 +1,14 @@
 import Head from 'next/Head'
 import styled from 'styled-components'
 
-const Wrapper = styled.div``
+import { CityScene } from '@components'
+// import { H1 } from '@components'
 
-export default function Index() {
+const Wrapper = styled.div`
+  height: 100vh;
+`
+
+export default function Home() {
   return (
     <Wrapper>
       <Head>
@@ -16,8 +21,8 @@ export default function Index() {
         <meta name='theme-color' content='#000000' />
         <meta name='Glasslands' content='Web site created using create-react-app' />
       </Head>
-
-      <h1>Base</h1>
+      <CityScene />
+      {/* <H1 /> */}
     </Wrapper>
   )
 }

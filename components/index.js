@@ -19,3 +19,5 @@ export { default as Watch } from './Watch'
 
 // scene
 export { default as CityScene } from './cityscape/CityScene'
+
+export { default as H1 } from './H1'
