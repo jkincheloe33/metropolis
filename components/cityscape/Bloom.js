@@ -7,7 +7,7 @@ import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPa
 
 extend({ EffectComposer, RenderPass, UnrealBloomPass })
 
-function Bloom({ children, newCameraValues }) {
+function Bloom({ children, mouse, newCameraValues }) {
   const { gl, camera, size } = useThree()
   const [scene, setScene] = useState()
   const composer = useRef()
@@ -17,6 +17,7 @@ function Bloom({ children, newCameraValues }) {
 
   useFrame(() => {
     scene && composer.current.render()
+    // console.log(mouse)
 
     const { position, rotation } = newCameraValues
 

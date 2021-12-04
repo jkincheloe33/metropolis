@@ -12,7 +12,7 @@ const Video = ({ size, src, ...props }) => {
     return vid
   })
 
-  // Keep in mind videos can only play once the user has interacted with the site ...
+  // we can play video on mount since they are muted
   useEffect(() => void video.play(), [video])
 
   return (

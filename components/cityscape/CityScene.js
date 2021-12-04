@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from 'react'
+import { Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { Canvas as CanvasBase } from '@react-three/fiber'
 import styled from 'styled-components'
 
@@ -26,14 +26,17 @@ const angles = [
 
 const CityScene = () => {
   const [active, setActive] = useState('Glasslands')
-  const [cameraValues, setCameraValues] = useState({
-    position: [0, 0, -200],
-    rotation: [0, -1.1, 0],
-  })
+  const [cameraValues, setCameraValues] = useState({ position: [26, 75, -114], rotation: [0, 0, 0] })
   const [details, setDetails] = useState(null)
   const [objectLoaded, setObjectLoaded] = useState(false)
   const [newCameraValues, setNewCameraValues] = useState(cameraValues)
   const [showDetails, setShowDetails] = useState(false)
+
+  // const mouse = useRef([0, 0])
+  // const onMouseMove = useCallback(
+  //   ({ clientX: x, clientY: y }) => (mouse.current = [x - window.innerWidth / 2, y - window.innerHeight / 2]),
+  //   []
+  // )
 
   const handlePosition = (coordinates, text) => {
     setActive(text)
@@ -68,9 +71,12 @@ const CityScene = () => {
       <Drawer handleClose={handleCloseDetails} open={showDetails}>
         {details && renderDetails()}
       </Drawer>
-      <Canvas camera={{ far: 50000, position: cameraValues.position }} visible={objectLoaded}>
+      <Canvas camera={{ far: 50000, position: cameraValues.position, rotation: cameraValues.rotation }} visible={objectLoaded}>
         {/* <Controls /> */}
-        <Bloom newCameraValues={newCameraValues}>
+        <Bloom
+          // mouse={mouse}
+          newCameraValues={newCameraValues}
+        >
           <ambientLight intensity={1} />
           <AccentLights />
 
@@ -80,7 +86,6 @@ const CityScene = () => {
               handlePosition={handlePosition}
               newCameraValues={newCameraValues}
               objectLoaded={objectLoaded}
-              // position={[-1000, 0, 0]}
               position={[0, 0, 0]}
               rotation={[0, 0.5, 0]}
               setObjectLoaded={setObjectLoaded}
@@ -112,8 +117,6 @@ const CityScene = () => {
               The Deep
             </CustomText>
           </Suspense> */}
-
-          {/* <Image position={[24000, 0, 7400]} rotation={[0, -1.08, 0]} size={[6000, 6000, 400]} src='./img/snake-logo-2.jpg' /> */}
         </Bloom>
       </Canvas>
     </Wrapper>
