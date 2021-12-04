@@ -1,4 +1,21 @@
+import Axios from 'axios'
 import { css } from 'styled-components'
+
+export const api = Axios.create({
+  baseURL: '/api',
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  },
+})
+
+api.interceptors.response.use(
+  res => res,
+  err => {
+    const { status } = err.response
+    console.log(status)
+  }
+)
 
 export const sizes = {
   down: {

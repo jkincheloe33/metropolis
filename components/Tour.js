@@ -1,21 +1,33 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/anchor-has-content */
-import { Suspense } from 'react'
+import { Suspense, useEffect } from 'react'
 import { Html } from '@react-three/drei'
 import styled from 'styled-components'
 
 import { CustomText, Video } from '@components'
-import { colors } from '@global'
+import { api, colors } from '@global'
 
 const Wrapper = styled.div`
   /* transform: translate(0, 0); */
 `
 
 const Tour = () => {
+  useEffect(() => {
+    const getTourDates = async () => {
+      const {
+        data: { data, success },
+      } = await api.get('/getTourDates')
+
+      if (success) console.log(data)
+    }
+
+    getTourDates()
+  }, [])
+
   return (
     <>
       <Video position={[38.5, 18, -69]} rotation={[0, 0.5, 0]} size={[10, 5, 1]} src='./video/liar.mp4' />
-      <Html>
+      {/* <Html>
         <Wrapper>
           <a
             className='bit-widget-initializer'
@@ -38,7 +50,7 @@ const Tour = () => {
             data-display-start-time='false'
           />
         </Wrapper>
-      </Html>
+      </Html> */}
       <Suspense fallback={null}>
         {/* <CustomText
           color={colors.berry}
