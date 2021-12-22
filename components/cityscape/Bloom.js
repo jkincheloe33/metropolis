@@ -8,9 +8,10 @@ import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPa
 extend({ EffectComposer, RenderPass, UnrealBloomPass })
 
 function Bloom({ children, mouse, newCameraValues }) {
-  const { gl, camera, size } = useThree()
   const [scene, setScene] = useState()
   const composer = useRef()
+  const { gl, camera, size, viewport } = useThree()
+  // const aspect = size.width / viewport.width
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => void scene && composer.current.setSize(size.width, size.height), [size])
@@ -28,6 +29,8 @@ function Bloom({ children, mouse, newCameraValues }) {
     camera.position.x = lerp(camera.position.x, position[0], 0.015)
     camera.position.y = lerp(camera.position.y, position[1], 0.015)
     camera.position.z = lerp(camera.position.z, position[2], 0.015)
+
+    // camera.rotation.y = lerp(rotation[1], mouse.current[0] / aspect, 0.1)
   }, 2)
 
   return (
