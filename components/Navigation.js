@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import styled from 'styled-components'
 
 import { colors, media } from '@global'
@@ -127,9 +126,7 @@ const Wrapper = styled.div`
   z-index: 20000000;
 `
 
-const Navigation = ({ angles, handlePosition }) => {
-  const [open, setOpen] = useState(false)
-
+const Navigation = ({ angles, handlePosition, open, setOpen }) => {
   const handleClick = (location, text) => {
     handlePosition(location, text)
     setOpen(false)

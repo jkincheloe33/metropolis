@@ -2,6 +2,7 @@
 export { default as CustomText } from './primitives/CustomText'
 export { default as Image } from './primitives/Image'
 export { default as NeonLight } from './primitives/NeonLight'
+export { default as Scramble } from './primitives/Scramble'
 export { default as Video } from './primitives/Video'
 export { default as Youtube } from './primitives/Youtube'
 

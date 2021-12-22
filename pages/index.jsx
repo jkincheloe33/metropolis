@@ -2,7 +2,6 @@ import Head from 'next/Head'
 import styled from 'styled-components'
 
 import { CityScene } from '@components'
-// import { H1 } from '@components'
 
 const Wrapper = styled.div`
   height: 100vh;
@@ -22,7 +21,6 @@ export default function Home() {
         <meta name='Glasslands' content='Web site created using create-react-app' />
       </Head>
       <CityScene />
-      {/* <H1 /> */}
     </Wrapper>
   )
 }

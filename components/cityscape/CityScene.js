@@ -30,7 +30,7 @@ const CityScene = () => {
   const [details, setDetails] = useState(null)
   const [objectLoaded, setObjectLoaded] = useState(false)
   const [newCameraValues, setNewCameraValues] = useState(cameraValues)
-  const [showDetails, setShowDetails] = useState(false)
+  const [showNavigation, setShowNavigation] = useState(false)
 
   // const mouse = useRef([0, 0])
   // const onMouseMove = useCallback(
@@ -44,18 +44,6 @@ const CityScene = () => {
     setTimeout(() => setCameraValues(coordinates), 5000)
   }
 
-  const handleCloseDetails = () => {
-    setShowDetails(false)
-    setTimeout(setDetails(null), 750)
-  }
-
-  const renderDetails = () => {
-    const Component = details?.component
-    const data = details?.data
-
-    return Component && <Component {...data} />
-  }
-
   useEffect(() => {
     if (objectLoaded) {
       handlePosition({ position: [26, 75, -114], rotation: [0, -1.3, 0] })
@@ -67,10 +55,8 @@ const CityScene = () => {
   return (
     <Wrapper>
       <Loader visible={!objectLoaded} />
-      <Navigation angles={angles} handlePosition={handlePosition} />
-      <Drawer handleClose={handleCloseDetails} open={showDetails}>
-        {details && renderDetails()}
-      </Drawer>
+      <Navigation angles={angles} handlePosition={handlePosition} open={showNavigation} setOpen={setShowNavigation} />
+      <Drawer open={active === 'Tour'} showNavigation={showNavigation} />
       <Canvas camera={{ far: 50000, position: cameraValues.position, rotation: cameraValues.rotation }} visible={objectLoaded}>
         {/* <Controls /> */}
         <Bloom
