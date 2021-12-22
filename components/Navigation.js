@@ -136,7 +136,7 @@ const Navigation = ({ angles, handlePosition, open, setOpen }) => {
     <>
       <Wrapper open={open}>
         <Container open={open}>
-          <img alt='logo' src='./img/Logo-White.png' />
+          <img alt='logo' src='./static/img/Logo-White.png' />
           <Main open={open}>
             {angles.map(({ location, text }, i) => (
               <NavItem index={i} key={i} onClick={() => handleClick(location, text)} open={open}>

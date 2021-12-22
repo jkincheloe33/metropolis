@@ -108,7 +108,7 @@ const Drawer = ({ open, showNavigation }) => {
       <Content>
         <Column>
           <h2>Tour Dates</h2>
-          <img alt='' src='./img/small-cover.png' />
+          <img alt='' src='./static/img/small-cover.png' />
         </Column>
         <TourDates>
           {tempDates.map(({ city, date }, i) => (

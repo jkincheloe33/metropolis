@@ -8,7 +8,7 @@ export * from './utils'
 export const GlobalStyles = createGlobalStyle`
   @font-face {
     font-family: 'Digital-7';
-    src: local('Digital-7'), url(./text/digital-7.ttf) format('truetype');
+    src: local('Digital-7'), url(./static/text/digital-7.ttf) format('truetype');
   }
 
   body {

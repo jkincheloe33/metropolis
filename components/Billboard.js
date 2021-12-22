@@ -15,8 +15,8 @@ const Billboard = ({ ...props }) => {
   }
 
   useEffect(() => {
-    new GLTFLoader(manager).load('./obj/billboard/scene.gltf', setModel)
-    new GLTFLoader().load('./obj/pain/scene.gltf', setSign)
+    new GLTFLoader(manager).load('./static/obj/billboard/scene.gltf', setModel)
+    new GLTFLoader().load('./static/obj/pain/scene.gltf', setSign)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

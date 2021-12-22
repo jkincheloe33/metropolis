@@ -7,7 +7,7 @@ const CustomText = forwardRef(
     {
       children,
       color,
-      fontFamily = './text/digital.json',
+      fontFamily = './static/text/digital.json',
       hAlign = 'center',
       height = 1000,
       rotation = [0, 0, 0],

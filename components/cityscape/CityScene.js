@@ -94,7 +94,7 @@ const CityScene = () => {
             </CustomText>
             <CustomText
               color={colors.blue}
-              fontFamily='./text/neon.json'
+              fontFamily='./static/text/neon.json'
               height={1000}
               position={[-700, -2500, 5800]}
               rotation={[0, -0.05, 0]}

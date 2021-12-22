@@ -52,7 +52,7 @@ const Merch = ({ active }) => {
         </CustomText>
         <CustomText
           color={colors.aqua}
-          fontFamily='./text/neon.json'
+          fontFamily='./static/text/neon.json'
           height={1}
           position={[57.5, 5, -111.5]}
           rotation={[0, 0.5, 0]}
@@ -62,7 +62,7 @@ const Merch = ({ active }) => {
         </CustomText>
         <CustomText
           color={colors.aqua}
-          fontFamily='./text/neon.json'
+          fontFamily='./static/text/neon.json'
           height={1}
           position={[79.5, 5, -122]}
           rotation={[0, 0.5, 0]}

@@ -45,7 +45,7 @@ const Watch = ({ active }) => {
       <Suspense fallback={null}>
         <CustomText
           color={colors.aqua}
-          // fontFamily='./text/neon.json'
+          // fontFamily='./static/text/neon.json'
           height={5}
           position={[108, 50, -104]}
           rotation={[0, 2.1, 0]}
