@@ -23,8 +23,20 @@ export const GlobalStyles = createGlobalStyle`
   body,
   html {
     background-color: black !important;
-    height: 100vh;
+    height: 100%;
+    min-height: 100vh;
+		// for IOS Mobile to account for navigation bars...JK
+		min-height: -webkit-fill-available;
+		overflow-x: hidden;
+		overflow-y: hidden;
+    position: fixed;
+    width: 100%;
+
+    #__next {
+      height: 100%;
+    }
   }
+
   #root,
   body,
   html,

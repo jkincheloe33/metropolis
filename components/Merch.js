@@ -3,7 +3,7 @@ import { Html } from '@react-three/drei'
 import styled from 'styled-components'
 
 import { CustomText } from '@components'
-import { colors, merchData } from '@global'
+import { colors, media, merchData } from '@global'
 
 const Shirt = styled.div`
   background: url(${p => p.src});
@@ -21,7 +21,7 @@ const Wrapper = styled.div`
   border-radius: 20px;
   display: flex;
   flex-wrap: wrap;
-  height: 60vh;
+  height: 54vh;
   justify-content: space-between;
   opacity: ${p => (p.active ? 1 : 0)};
   overflow: auto;
@@ -29,6 +29,10 @@ const Wrapper = styled.div`
   transform: ${p => (p.active ? 'translate(-167.5px, -100px)' : 'translate(-167.5px, 300px)')};
   transition: all 2000ms ease;
   width: 335px;
+
+  ${media.up.lg`
+    height: 60vh;
+  `}
 `
 
 const Merch = ({ active }) => {

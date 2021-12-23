@@ -3,22 +3,18 @@ import { Html } from '@react-three/drei'
 import styled from 'styled-components'
 
 import { CustomText, Youtube } from '@components'
-import { colors, watchData } from '@global'
+import { colors, media, watchData } from '@global'
 
 const Row = styled.div`
-  /* box-shadow: 0 0 15px ${colors.berry}; */
-  width: 100%;
-
   padding-bottom: 30.6px;
+  width: 100%;
 `
 
 const Wrapper = styled.div`
-  /* background-color: ${colors.black};
-  border: 2px solid ${colors.berry}; */
   border-radius: 20px;
   display: flex;
   flex-wrap: wrap;
-  height: 73vh;
+  height: 66vh;
   justify-content: space-between;
   opacity: ${p => (p.active ? 1 : 0)};
   overflow: auto;
@@ -26,6 +22,10 @@ const Wrapper = styled.div`
   transform: ${p => (p.active ? 'translate(-167.5px, -100px)' : 'translate(-167.5px, 300px)')};
   transition: all 2000ms ease;
   width: 335px;
+
+  ${media.up.lg`
+    height: 73vh;
+  `}
 `
 
 const Watch = ({ active }) => {

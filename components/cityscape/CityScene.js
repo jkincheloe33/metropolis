@@ -7,7 +7,7 @@ import { AccentLights, Billboard, Bloom, CustomText, Drawer, Loader, Megatron, M
 import Model, { Controls } from './Model'
 
 const Canvas = styled(CanvasBase)`
-  min-height: 100vh;
+  min-height: 100%;
   opacity: ${p => (p.visible ? 1 : 0)};
   transition: opacity 5000ms ease;
 `
