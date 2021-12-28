@@ -1,4 +1,5 @@
-import { Suspense, useCallback, useEffect, useRef, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import { Canvas as CanvasBase } from '@react-three/fiber'
 import styled from 'styled-components'
 
@@ -27,16 +28,11 @@ const angles = [
 const CityScene = () => {
   const [active, setActive] = useState('Glasslands')
   const [cameraValues, setCameraValues] = useState({ position: [26, 75, -114], rotation: [0, 0, 0] })
-  const [details, setDetails] = useState(null)
   const [objectLoaded, setObjectLoaded] = useState(false)
   const [newCameraValues, setNewCameraValues] = useState(cameraValues)
   const [showNavigation, setShowNavigation] = useState(false)
 
-  // const mouse = useRef([0, 0])
-  // const onMouseMove = useCallback(
-  //   ({ clientX: x, clientY: y }) => (mouse.current = [x - window.innerWidth / 2, y - window.innerHeight / 2]),
-  //   []
-  // )
+  const { query } = useRouter()
 
   const handlePosition = (coordinates, text) => {
     setActive(text)
@@ -46,11 +42,12 @@ const CityScene = () => {
 
   useEffect(() => {
     if (objectLoaded) {
-      handlePosition({ position: [26, 75, -114], rotation: [0, -1.3, 0] })
-      // if (window.innerWidth > 768) handlePosition({ position: [4000, 2500, 6000], rotation: [0.005, -1.5, 0] })
-      // else handlePosition({ position: [0, 2500, 6000], rotation: [0.005, -1.3, 0] })
+      if (query?.watch === 'true') handlePosition(angles[1].location, angles[1].text)
+      else if (query?.merch === 'true') handlePosition(angles[2].location, angles[2].text)
+      else if (query?.tour === 'true') handlePosition(angles[3].location, angles[3].text)
+      else handlePosition(angles[0].location, angles[0].text)
     }
-  }, [objectLoaded])
+  }, [objectLoaded, query])
 
   return (
     <Wrapper>
@@ -59,10 +56,7 @@ const CityScene = () => {
       <Drawer open={active === 'Tour'} showNavigation={showNavigation} />
       <Canvas camera={{ far: 50000, position: cameraValues.position, rotation: cameraValues.rotation }} visible={objectLoaded}>
         {/* <Controls /> */}
-        <Bloom
-          // mouse={mouse}
-          newCameraValues={newCameraValues}
-        >
+        <Bloom newCameraValues={newCameraValues}>
           <ambientLight intensity={1} />
           <AccentLights />
 
