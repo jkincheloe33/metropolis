@@ -1,3 +1,11 @@
+// icons
+export { default as FacebookIcon } from './icons/FacebookIcon'
+export { default as InstagramIcon } from './icons/InstagramIcon'
+export { default as SpotifyIcon } from './icons/SpotifyIcon'
+export { default as TikTokIcon } from './icons/TikTokIcon'
+export { default as TwitterIcon } from './icons/TwitterIcon'
+export { default as YoutubeIcon } from './icons/YoutubeIcon'
+
 // primitives
 export { default as CustomText } from './primitives/CustomText'
 export { default as Image } from './primitives/Image'
