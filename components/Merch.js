@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { CustomText } from '@components'
 import { colors, media, merchData } from '@global'
 
-const Shirt = styled.div`
+const Shirt = styled.a`
   background: url(${p => p.src});
   background-size: cover;
   box-shadow: 0 0 8px ${colors.aqua};
@@ -41,8 +41,8 @@ const Merch = ({ active }) => {
       <mesh position={[63.8, 11, -125]}>
         <Html>
           <Wrapper active={active}>
-            {merchData.map((md, i) => (
-              <Shirt key={i} src={md} />
+            {merchData.map(({ link, src }, i) => (
+              <Shirt href={link} key={i} src={src} target='_blank' />
             ))}
           </Wrapper>
         </Html>

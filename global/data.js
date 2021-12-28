@@ -1,12 +1,12 @@
 export const merchData = [
-  './static/img/biometric_ryan.jpg',
-  './static/img/faceless_ruth.jpg',
-  './static/img/snake_skull_ruth.jpg',
-  './static/img/creeps_ryan.jpg',
-  './static/img/deadman_ruth.jpg',
-  './static/img/snake_skull_ryan.jpg',
-  './static/img/deadman_ryan.jpg',
-  './static/img/logo_ruth.jpg',
+  { link: 'https://glasslands.bigcartel.com/product/biometric-tee', src: './static/img/biometric_ryan.jpg' },
+  { link: 'https://glasslands.bigcartel.com/product/faceless-tee', src: './static/img/faceless_ruth.jpg' },
+  { link: 'https://glasslands.bigcartel.com/product/snake-skull-tee', src: './static/img/snake_skull_ruth.jpg' },
+  { link: 'https://glasslands.bigcartel.com/product/creeps-long-sleeve', src: './static/img/creeps_ryan.jpg' },
+  { link: 'https://glasslands.bigcartel.com/product/deadman-tee', src: './static/img/deadman_ruth.jpg' },
+  { link: 'https://glasslands.bigcartel.com/product/snake-skull-tee', src: './static/img/snake_skull_ryan.jpg' },
+  { link: 'https://glasslands.bigcartel.com/product/deadman-tee', src: './static/img/deadman_ryan.jpg' },
+  { link: 'https://glasslands.bigcartel.com/product/logo-tee', src: './static/img/logo_ruth.jpg' },
 ]
 
 export const watchData = [
