@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { Canvas as CanvasBase } from '@react-three/fiber'
 import styled from 'styled-components'
 
-import { AccentLights, Billboard, Bloom, CustomText, Drawer, Loader, Megatron, Merch, Navigation, Tour, Watch } from '@components'
+import { AccentLights, Bloom, CustomText, Drawer, Loader, Megatron, Merch, Navigation, Tour, Watch } from '@components'
 
 import Model, { Controls } from './Model'
 
@@ -71,10 +71,6 @@ const CityScene = () => {
               setObjectLoaded={setObjectLoaded}
             />
           </Suspense>
-
-          {/* <Suspense fallback={null}>
-            <Billboard position={[7500, -1200, 1500]} rotation={[0, 2.05, 3.15]} scale={20} />
-          </Suspense> */}
 
           <Megatron />
           <Watch active={active === 'Watch'} />

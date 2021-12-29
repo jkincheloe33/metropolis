@@ -1,9 +1,8 @@
 import axios from 'axios'
 
 export default async (req, res) => {
-  // https://rest.bandsintown.com/artists/Justin%20Bieber/?app_id=write_here_your_app-id
   try {
-    const { data } = await axios.get('https://dog.ceo/api/breeds/list/all')
+    const { data } = await axios.get(`https://rest.bandsintown.com/artists/Glasslands/events/?app_id=${process.env.BANDS_IN_TOWN_KEY}`)
     res.json({ success: true, data })
   } catch (error) {
     console.error(error)

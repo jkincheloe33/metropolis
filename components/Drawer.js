@@ -59,7 +59,6 @@ const TourDates = styled.div`
 
   ${media.up.lg`
     flex: 0 0 350px;
-
   `}
 `
 
@@ -84,6 +83,7 @@ const Wrapper = styled.div`
 `
 
 const Drawer = ({ open, showNavigation }) => {
+  const [dates, setDates] = useState([])
   const [delay, setDelay] = useState(false)
 
   useEffect(() => {
@@ -97,7 +97,7 @@ const Drawer = ({ open, showNavigation }) => {
         data: { data, success },
       } = await api.get('/getTourDates')
 
-      if (success) console.log(data)
+      if (success) console.log('tour', data)
     }
 
     getTourDates()
@@ -111,12 +111,16 @@ const Drawer = ({ open, showNavigation }) => {
           <img alt='' src='./static/img/small-cover.png' />
         </Column>
         <TourDates>
-          {tempDates.map(({ city, date }, i) => (
-            <Date key={i}>
-              <Scramble open={open} text={city} />
-              <Scramble open={open} text={date} />
-            </Date>
-          ))}
+          {dates.length > 0 ? (
+            dates.map(({ datetime, venue }, i) => (
+              <Date key={i}>
+                <Scramble open={open} text={`${venue.city}`} />
+                <Scramble open={open} text={datetime.split('T')[0]} />
+              </Date>
+            ))
+          ) : (
+            <Scramble open={open} text='No current tour dates' />
+          )}
         </TourDates>
       </Content>
     </Wrapper>

@@ -16,7 +16,6 @@ export { default as Youtube } from './primitives/Youtube'
 
 // components
 export { default as AccentLights } from './AccentLights'
-export { default as Billboard } from './Billboard'
 export { default as Bloom } from './cityscape/Bloom'
 export { default as Drawer } from './Drawer'
 export { default as Loader } from './Loader'

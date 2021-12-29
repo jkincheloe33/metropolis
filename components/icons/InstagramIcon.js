@@ -1,13 +1,9 @@
 import { colors } from '@global'
 
 export const InstagramIcon = ({ className, color, ...props }) => (
-  <svg {...props} className={className} fill='none' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'>
+  <svg {...props} className={className} fill='none' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'>
     <path
-      d='M83 23a22 22 0 0 1 22 22v38a22 22 0 0 1-22 22H45a22 22 0 0 1-22-22V45a22 22 0 0 1 22-22h38m0-8H45a30.09 30.09 0 0 0-30 30v38a30.09 30.09 0 0 0 30 30h38a30.09 30.09 0 0 0 30-30V45a30.09 30.09 0 0 0-30-30Z'
-      fill={color || colors.yellow}
-    />
-    <path
-      d='M90.14 32a5.73 5.73 0 1 0 5.73 5.73A5.73 5.73 0 0 0 90.14 32ZM64.27 46.47A17.68 17.68 0 1 1 46.6 64.14a17.7 17.7 0 0 1 17.67-17.67m0-8A25.68 25.68 0 1 0 90 64.14a25.68 25.68 0 0 0-25.73-25.67Z'
+      d='M20.7 56h22.7c7 0 12.7-5.8 12.7-12.9V20.9C56 13.8 50.3 8 43.3 8H20.7C13.7 8 8 13.8 8 20.9v22.2C8 50.2 13.7 56 20.7 56zM46 16c1.6 0 2.9 1.3 2.9 3s-1.3 3-2.9 3-2.9-1.3-2.9-3 1.3-3 2.9-3zm-14 4c6.5 0 11.7 5.4 11.7 12S38.5 44 32 44s-11.7-5.4-11.7-12S25.5 20 32 20z'
       fill={color || colors.yellow}
     />
   </svg>

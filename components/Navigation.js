@@ -41,12 +41,27 @@ const Bar = styled.div`
   `}
 `
 
-const Hamburger = styled.div`
-  height: 19px;
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   position: relative;
-  width: 24px;
 
+  img {
+    left: 18px;
+    opacity: ${p => (p.open ? 1 : 0)};
+    position: absolute;
+    top: 12px;
+    transform: ${p => (p.open ? 'translateX(0)' : 'translateX(300px)')};
+    transition: all 1500ms ease;
+    width: 40px;
+    z-index: 20000001;
+  }
+`
+
+const Hamburger = styled.div`
   height: 25px;
+  position: relative;
   width: 32px;
 `
 
@@ -61,22 +76,20 @@ const HamburgerWrapper = styled.div`
 
 const Icons = styled.div`
   align-items: center;
-  background-color: ${colors.black}D9;
   display: flex;
   justify-content: flex-end;
   opacity: ${p => (p.open ? 1 : 0)};
-  padding: 0 29px 20px;
   transform: ${p => (p.open ? 'translateX(0)' : 'translateX(100%)')};
-  transition: opacity 500ms ease-in-out, transform 1000ms cubic-bezier(0.77, 0, 0.175, 1);
+  transition: opacity 500ms ease-in-out, transform 1500ms cubic-bezier(0.77, 0, 0.175, 1);
 
   a {
     &:not(:first-of-type) {
-      margin-left: 10px;
+      margin-left: 8px;
     }
   }
 
   svg {
-    width: 40px;
+    width: 35px;
   }
 `
 
@@ -118,24 +131,6 @@ const NavItem = styled.p`
   `}
 `
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  position: relative;
-
-  img {
-    left: 18px;
-    opacity: ${p => (p.open ? 1 : 0)};
-    position: absolute;
-    top: 12px;
-    transform: ${p => (p.open ? 'translateX(0)' : 'translateX(300px)')};
-    transition: all 1500ms ease;
-    width: 40px;
-    z-index: 20000001;
-  }
-`
-
 const Wrapper = styled.div`
   height: 100%;
   max-width: 500px;
@@ -167,27 +162,27 @@ const Navigation = ({ angles, handlePosition, open, setOpen }) => {
                 {text}
               </NavItem>
             ))}
+            <Icons open={open}>
+              <a href='https://instagram.com/glasslandsband' target='_blank'>
+                <InstagramIcon color={colors.white} />
+              </a>
+              <a href='https://www.tiktok.com/@glasslands' target='_blank'>
+                <TikTokIcon color={colors.white} />
+              </a>
+              <a href='https://twitter.com/glasslandsband' target='_blank'>
+                <TwitterIcon color={colors.white} />
+              </a>
+              <a href='https://facebook.com/glasslandsofficial' target='_blank'>
+                <FacebookIcon color={colors.white} />
+              </a>
+              <a href='https://youtube.com/glasslands' target='_blank'>
+                <YoutubeIcon color={colors.white} />
+              </a>
+              <a href='https://open.spotify.com/artist/1uaz4cRw5clcnWJIswU6Jy?si=oAJCPq_eSCesLF3iKBLrHA' target='_blank'>
+                <SpotifyIcon color={colors.white} />
+              </a>
+            </Icons>
           </Main>
-          <Icons open={open}>
-            <a href='https://instagram.com/glasslandsband' target='_blank'>
-              <InstagramIcon color={colors.white} />
-            </a>
-            <a href='https://www.tiktok.com/@glasslands' target='_blank'>
-              <TikTokIcon color={colors.white} />
-            </a>
-            <a href='https://twitter.com/glasslandsband' target='_blank'>
-              <TwitterIcon color={colors.white} />
-            </a>
-            <a href='https://facebook.com/glasslandsofficial' target='_blank'>
-              <FacebookIcon color={colors.white} />
-            </a>
-            <a href='https://youtube.com/glasslands' target='_blank'>
-              <YoutubeIcon color={colors.white} />
-            </a>
-            <a href='https://open.spotify.com/artist/1uaz4cRw5clcnWJIswU6Jy?si=oAJCPq_eSCesLF3iKBLrHA' target='_blank'>
-              <SpotifyIcon color={colors.white} />
-            </a>
-          </Icons>
         </Container>
       </Wrapper>
       <HamburgerWrapper>
