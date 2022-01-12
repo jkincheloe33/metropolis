@@ -3,16 +3,23 @@ import styled from 'styled-components'
 
 import { colors } from '@global'
 
-const Paragraph = styled.p`
+const Paragraph = styled.a`
   color: ${colors.white};
   font-size: 22px;
+  pointer-events: ${p => (p.clickable ? 'auto' : 'none')};
+  text-decoration: none;
+  transition: color 250ms ease;
 
   .symbol {
     color: ${colors.yellow};
   }
+
+  &:hover {
+    color: ${colors.yellow};
+  }
 `
 
-const Scramble = ({ open, text }) => {
+const Scramble = ({ link, open, text }) => {
   const ref = useRef(null)
   const { current: chars } = useRef('!<>-_\\/[]{}—=+*^?#________')
 
@@ -86,7 +93,7 @@ const Scramble = ({ open, text }) => {
     if (open && ref?.current) setTimeout(() => handleText(text), 1000)
   }, [open])
 
-  return <Paragraph ref={ref} />
+  return <Paragraph clickable={!!link} href={link} ref={ref} target='_blank' />
 }
 
 export default Scramble

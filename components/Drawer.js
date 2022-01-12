@@ -97,7 +97,7 @@ const Drawer = ({ open, showNavigation }) => {
         data: { data, success },
       } = await api.get('/getTourDates')
 
-      if (success) console.log('tour', data)
+      if (success) setDates(data)
     }
 
     getTourDates()
@@ -112,10 +112,10 @@ const Drawer = ({ open, showNavigation }) => {
         </Column>
         <TourDates>
           {dates.length > 0 ? (
-            dates.map(({ datetime, venue }, i) => (
+            dates.map(({ datetime, url, venue }, i) => (
               <Date key={i}>
-                <Scramble open={open} text={`${venue.city}`} />
-                <Scramble open={open} text={datetime.split('T')[0]} />
+                <Scramble link={url} open={open} text={`${venue.location}`} />
+                <Scramble link={url} open={open} text={datetime.split('T')[0]} />
               </Date>
             ))
           ) : (
