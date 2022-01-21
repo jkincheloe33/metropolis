@@ -70,8 +70,13 @@ const HamburgerWrapper = styled.div`
   position: fixed;
   right: 20px;
   top: 20px;
+  transition: transform 1000ms ease;
   // needed to be over react/three-drei Html
   z-index: 20000000;
+
+  &:hover {
+    transform: scale(1.2);
+  }
 `
 
 const Icons = styled.div`

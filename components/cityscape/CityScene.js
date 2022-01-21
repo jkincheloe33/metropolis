@@ -57,7 +57,7 @@ const CityScene = () => {
       <Canvas camera={{ far: 50000, position: cameraValues.position, rotation: cameraValues.rotation }} visible={objectLoaded}>
         {/* <Controls /> */}
         <Bloom newCameraValues={newCameraValues}>
-          <ambientLight intensity={1} />
+          <ambientLight intensity={1.5} />
           <AccentLights />
 
           {/* City */}
