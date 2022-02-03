@@ -46,17 +46,6 @@ const Container = styled.div`
   flex-direction: column;
   height: 100%;
   position: relative;
-
-  img {
-    left: 18px;
-    opacity: ${p => (p.open ? 1 : 0)};
-    position: absolute;
-    top: 12px;
-    transform: ${p => (p.open ? 'translateX(0)' : 'translateX(300px)')};
-    transition: all 1500ms ease;
-    width: 40px;
-    z-index: 20000001;
-  }
 `
 
 const Hamburger = styled.div`
@@ -98,6 +87,17 @@ const Icons = styled.div`
   }
 `
 
+const Logo = styled.img`
+  left: 18px;
+  opacity: ${p => (p.open ? 1 : 0)};
+  position: absolute;
+  top: 12px;
+  transform: ${p => (p.open ? 'translateX(0)' : 'translateX(300px)')};
+  transition: all 1500ms ease;
+  width: 40px;
+  z-index: 20000001;
+`
+
 const Main = styled.div`
   align-items: flex-end;
   background-color: ${colors.black}D9;
@@ -122,7 +122,6 @@ const NavItem = styled.p`
   transform: ${p => (p.open ? 'translateX(0)' : 'translateX(200%)')};
   transform-origin: center right;
   transition: all 1500ms ease;
-  transition-delay: ${p => p.index * 100 + 100}ms;
 
   &:hover {
     text-shadow: 0 0 10px ${colors.yellow};
@@ -160,13 +159,18 @@ const Navigation = ({ angles, handlePosition, open, setOpen }) => {
     <>
       <Wrapper open={open}>
         <Container open={open}>
-          <img alt='logo' src='./static/img/Logo-White.png' />
+          <Logo alt='logo' open={open} src='./static/img/Logo-White.png' />
           <Main open={open}>
             {angles.map(({ location, text }, i) => (
               <NavItem index={i} key={i} onClick={() => handleClick(location, text)} open={open}>
                 {text}
               </NavItem>
             ))}
+            <a href='https://velocityrecords.com/' target='_blank'>
+              <NavItem index={angles.length} open={open}>
+                Pre-order
+              </NavItem>
+            </a>
             <Icons open={open}>
               <a href='https://instagram.com/glasslandsband' target='_blank'>
                 <InstagramIcon color={colors.white} />

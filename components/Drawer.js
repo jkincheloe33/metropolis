@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 import { Scramble } from '@components'
-import { api, colors, media, tempDates } from '@global'
+import { api, colors, media } from '@global'
 
 const Column = styled.div`
   flex: 1;

@@ -93,7 +93,7 @@ const Scramble = ({ link, open, text }) => {
     if (open && ref?.current) setTimeout(() => handleText(text), 1000)
   }, [open])
 
-  return <Paragraph clickable={!!link} href={link} ref={ref} target='_blank' />
+  return <Paragraph clickable={!!link && open} href={link} ref={ref} target='_blank' />
 }
 
 export default Scramble
