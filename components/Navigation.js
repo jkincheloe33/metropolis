@@ -166,7 +166,7 @@ const Navigation = ({ angles, handlePosition, open, setOpen }) => {
                 {text}
               </NavItem>
             ))}
-            <a href='https://velocityrecords.com/' target='_blank'>
+            <a href='https://velocityrecords.com/collections/glasslands' target='_blank'>
               <NavItem index={angles.length} open={open}>
                 Pre-order
               </NavItem>
