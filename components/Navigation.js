@@ -41,6 +41,16 @@ const Bar = styled.div`
   `}
 `
 
+const Bars = styled.div`
+  height: 100%;
+  transition: transform 1000ms ease;
+  width: 100%;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+`
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -54,18 +64,27 @@ const Hamburger = styled.div`
   width: 32px;
 `
 
+const HamburgerText = styled.p`
+  color: ${colors.white};
+  opacity: ${p => (p.open ? 0 : 1)};
+  padding-right: 10px;
+  pointer-events: ${p => (p.open ? 'none' : 'auto')};
+  position: absolute;
+  right: 100%;
+  text-align: right;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: opacity 250ms ease;
+  white-space: nowrap;
+`
+
 const HamburgerWrapper = styled.div`
   cursor: pointer;
   position: fixed;
   right: 20px;
   top: 20px;
-  transition: transform 1000ms ease;
   // needed to be over react/three-drei Html
   z-index: 20000000;
-
-  &:hover {
-    transform: scale(1.2);
-  }
 `
 
 const Icons = styled.div`
@@ -196,9 +215,12 @@ const Navigation = ({ angles, handlePosition, open, setOpen }) => {
       </Wrapper>
       <HamburgerWrapper>
         <Hamburger onClick={() => setOpen(open => !open)}>
-          <Bar open={open} />
-          <Bar open={open} />
-          <Bar open={open} />
+          <HamburgerText open={open}>tap here to explore --{'>'}</HamburgerText>
+          <Bars>
+            <Bar open={open} />
+            <Bar open={open} />
+            <Bar open={open} />
+          </Bars>
         </Hamburger>
       </HamburgerWrapper>
     </>
