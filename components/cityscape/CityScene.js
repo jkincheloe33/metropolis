@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from 'react'
+import { Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Canvas as CanvasBase } from '@react-three/fiber'
 import styled from 'styled-components'
@@ -19,24 +19,32 @@ const Wrapper = styled.div`
 `
 
 const angles = [
-  { location: { position: [26, 75, -114], rotation: [0, -1.3, 0] }, text: 'Glasslands' },
-  { location: { position: [117, 41, -109], rotation: [0, -4.2, 0] }, text: 'Watch' },
+  { location: { position: [26, 75, -114], rotation: [0, -1.3, 0] }, text: 'Home' },
+  { location: { position: [117, 41, -109], rotation: [0, -4.2, 0] }, text: 'Music Videos' },
   { location: { position: [69, 11, -115.5], rotation: [0, 0.5, 0] }, text: 'Merch' },
   { location: { position: [35, 27, -103], rotation: [0, 3, 0] }, text: 'Tour' },
 ]
 
 const CityScene = () => {
   const [active, setActive] = useState('Glasslands')
-  const [cameraValues, setCameraValues] = useState({ position: [26, 75, -114], rotation: [0, 0, 0] })
+  const [cameraValues, setCameraValues] = useState({ position: [26, 40, -90], rotation: [-0.5, -1.8, 0] })
   const [objectLoaded, setObjectLoaded] = useState(false)
   const [newCameraValues, setNewCameraValues] = useState(cameraValues)
+  const [ready, setReady] = useState(false)
   const [showNavigation, setShowNavigation] = useState(false)
 
   const { query } = useRouter()
 
+  const mouse = useRef([0, 0])
+  const onMouseMove = useCallback(
+    ({ clientX: x, clientY: y }) => (mouse.current = [x - window.innerWidth / 2, y - window.innerHeight / 2]),
+    []
+  )
+
   const handlePosition = (coordinates, text) => {
     setActive(text)
     setNewCameraValues(coordinates)
+    setReady(true)
     setTimeout(() => setCameraValues(coordinates), 5000)
   }
 
@@ -50,13 +58,13 @@ const CityScene = () => {
   }, [objectLoaded, query])
 
   return (
-    <Wrapper>
+    <Wrapper onMouseMove={onMouseMove}>
       <Loader visible={!objectLoaded} />
       <Navigation angles={angles} handlePosition={handlePosition} open={showNavigation} setOpen={setShowNavigation} />
       <Drawer open={active === 'Tour'} showNavigation={showNavigation} />
       <Canvas camera={{ far: 50000, position: cameraValues.position, rotation: cameraValues.rotation }} visible={objectLoaded}>
         {/* <Controls /> */}
-        <Bloom newCameraValues={newCameraValues}>
+        <Bloom mouse={mouse} newCameraValues={newCameraValues} ready={ready}>
           <ambientLight intensity={1.5} />
           <AccentLights />
 
@@ -73,7 +81,7 @@ const CityScene = () => {
           </Suspense>
 
           <Megatron />
-          <Watch active={active === 'Watch'} />
+          <Watch active={active === 'Music Videos'} />
           <Merch active={active === 'Merch'} />
           <Tour />
 

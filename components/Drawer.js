@@ -108,7 +108,7 @@ const Drawer = ({ open, showNavigation }) => {
       <Content>
         <Column>
           <h2>Tour Dates</h2>
-          <img alt='' src='./static/img/velocity_tour.jpg' />
+          <img alt='' src='./static/img/live.JPG' />
         </Column>
         <TourDates>
           {dates.length > 0 ? (
