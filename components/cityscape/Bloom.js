@@ -34,8 +34,8 @@ function Bloom({ children, mouse, newCameraValues, ready }) {
     if (ready && !follow && (camera.position.z >= position[2] - 1 || camera.position.z <= position[2] + 1)) setFollow(true)
 
     if (follow) {
-      camera.rotation.y = lerp(camera.rotation.y, camera.rotation.y + mouse.current[0] / aspect / 6000, 0.1)
-      camera.rotation.x = lerp(camera.rotation.x, camera.rotation.x + mouse.current[1] / aspect / 10000, 0.1)
+      camera.rotation.y = lerp(camera.rotation.y, camera.rotation.y + mouse.current[0] / aspect / 15000, 0.1)
+      // camera.rotation.x = lerp(camera.rotation.x, camera.rotation.x + mouse.current[1] / aspect / 10000, 0.1)
     }
   }, 2)
 
