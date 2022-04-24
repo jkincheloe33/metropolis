@@ -20,7 +20,7 @@ const Wrapper = styled.div`
 
 const angles = [
   { location: { position: [26, 75, -114], rotation: [0, -1.3, 0] }, text: 'Home' },
-  { location: { position: [117, 41, -109], rotation: [0, -4.2, 0] }, text: 'Watch' },
+  { location: { position: [117, 41, -109], rotation: [0, -4.2, 0] }, text: 'Music Videos' },
   { location: { position: [69, 11, -115.5], rotation: [0, 0.5, 0] }, text: 'Merch' },
   { location: { position: [35, 27, -103], rotation: [0, 3, 0] }, text: 'Tour' },
 ]
@@ -81,7 +81,7 @@ const CityScene = () => {
           </Suspense>
 
           <Megatron />
-          <Watch active={active === 'Watch'} />
+          <Watch active={active === 'Music Videos'} />
           <Merch active={active === 'Merch'} />
           <Tour />
 

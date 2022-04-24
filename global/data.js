@@ -10,6 +10,8 @@ export const merchData = [
 ]
 
 export const watchData = [
+  'https://www.youtube.com/watch?v=1FPw0E44LDc',
+  'https://www.youtube.com/watch?v=-vwRwvXc2qM',
   'https://www.youtube.com/watch?v=Ps4WZkcNDkc',
   'youtube.com/watch?v=7uJ_8BVmQHQ',
   'https://www.youtube.com/watch?v=SUL-KwIaSpI',
