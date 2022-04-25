@@ -181,7 +181,7 @@ const Navigation = ({ angles, handlePosition, open, setOpen }) => {
           <Logo alt='logo' open={open} src='./static/img/Logo-White.png' />
           <Main open={open}>
             {angles.map(({ location, text }, i) => (
-              <NavItem index={i} key={i} onClick={() => handleClick(location, text)} open={open}>
+              <NavItem index={i} key={i} onClick={() => handleClick(location, i)} open={open}>
                 {text}
               </NavItem>
             ))}
