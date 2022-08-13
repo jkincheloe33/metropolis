@@ -1,21 +1,18 @@
 import { useEffect, useRef, useState } from 'react'
 import lerp from 'lerp'
 import { extend, useFrame, useThree } from '@react-three/fiber'
-import * as THREE from 'three'
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer'
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass'
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass'
 
 extend({ EffectComposer, RenderPass, UnrealBloomPass })
 
-function Bloom({ children, newCameraValues, ready }) {
+function Bloom({ children, newCameraValues, prevCameraValues, ready, setPrevCameraValues }) {
   const [follow, setFollow] = useState(false)
-  const [prevCameraValues, setPrevCameraValues] = useState(null)
   const [scene, setScene] = useState()
   const composer = useRef()
   const groupRef = useRef(null)
   const { gl, camera, size } = useThree()
-  let frames = 0
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => void scene && composer.current.setSize(size.width, size.height), [size])
@@ -23,7 +20,6 @@ function Bloom({ children, newCameraValues, ready }) {
   useEffect(() => {
     setPrevCameraValues(camera)
     setFollow(false)
-    frames = 0
   }, [newCameraValues])
 
   useFrame((state) => {
@@ -33,21 +29,17 @@ function Bloom({ children, newCameraValues, ready }) {
     if (ready && !follow && (camera.position.z === newCameraValues.position[2])) setFollow(true)
 
     if (ready && groupRef?.current) {
-        groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, (state.mouse.x * Math.PI) / 1000, 0.05)
-        groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, (state.mouse.y * Math.PI) / 1500, 0.05)
-    }
-    
-    if (prevCameraValues && frames <= 720) {
-      const t = frames / 720;
-      camera.rotation.x = lerp(prevCameraValues.rotation.x, rotation[0], t)
-      camera.rotation.y = lerp(prevCameraValues.rotation.y, rotation[1], t)
-      camera.rotation.z = lerp(prevCameraValues.rotation.z, rotation[2], t)
 
-      camera.position.x = lerp(prevCameraValues.position.x, position[0], t)
-      camera.position.y = lerp(prevCameraValues.position.y, position[1], t)
-      camera.position.z = lerp(prevCameraValues.position.z, position[2], t)
-      frames++;
+      camera.rotation.y = lerp(camera.rotation.y, camera.rotation.y + (state.mouse.x * Math.PI) / 130, 0.06)
     }
+
+    camera.rotation.x = lerp(prevCameraValues.rotation.x, rotation[0], 0.03)
+    camera.rotation.y = lerp(prevCameraValues.rotation.y, rotation[1], 0.03)
+    camera.rotation.z = lerp(prevCameraValues.rotation.z, rotation[2], 0.03)
+
+    camera.position.x = lerp(prevCameraValues.position.x, position[0], 0.03)
+    camera.position.y = lerp(prevCameraValues.position.y, position[1], 0.03)
+    camera.position.z = lerp(prevCameraValues.position.z, position[2], 0.03)
   }, 2)
 
   return (

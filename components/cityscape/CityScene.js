@@ -1,4 +1,4 @@
-import { Suspense, useCallback, useEffect, useRef, useState } from 'react'
+import { Suspense, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Canvas as CanvasBase } from '@react-three/fiber'
 import styled from 'styled-components'
@@ -30,6 +30,7 @@ const CityScene = () => {
   const [cameraValues, setCameraValues] = useState({ position: [26, 40, -90], rotation: [-0.5, -1.8, 0] })
   const [objectLoaded, setObjectLoaded] = useState(false)
   const [newCameraValues, setNewCameraValues] = useState(cameraValues)
+  const [prevCameraValues, setPrevCameraValues] = useState(null)
   const [ready, setReady] = useState(false)
   const [showNavigation, setShowNavigation] = useState(false)
 
@@ -37,11 +38,6 @@ const CityScene = () => {
 
   // stores the horizontal location that a user presses down
   const { current } = useRef({ xDown: null })
-  const mouse = useRef([0, 0])
-  const onMouseMove = useCallback(
-    ({ clientX: x, clientY: y }) => (mouse.current = [x - window.innerWidth / 2, y - window.innerHeight / 2]),
-    []
-  )
 
   const handlePosition = (coordinates, index) => {
     setActive(index)
@@ -75,18 +71,17 @@ const CityScene = () => {
 
   return (
     <Wrapper
-      onMouseMove={onMouseMove}
       onMouseDown={handleDown}
       onMouseUp={handleUp}
       onTouchEnd={handleUp}
       onTouchStart={handleDown}
     >
       <Loader visible={!objectLoaded} />
-      <Navigation angles={angles} handlePosition={handlePosition} open={showNavigation} setOpen={setShowNavigation} />
+      <Navigation active={active} angles={angles} handlePosition={handlePosition} open={showNavigation} setOpen={setShowNavigation} />
       <Drawer open={active === 3} showNavigation={showNavigation} />
       <Canvas camera={{ far: 50000, position: cameraValues.position, rotation: cameraValues.rotation }} visible={objectLoaded}>
         {/* <Controls /> */}
-        <Bloom mouse={mouse} newCameraValues={newCameraValues} ready={ready}>
+        <Bloom newCameraValues={newCameraValues} prevCameraValues={prevCameraValues} ready={ready} setPrevCameraValues={setPrevCameraValues}>
           <ambientLight intensity={1.5} />
           <AccentLights />
 
