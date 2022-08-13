@@ -138,15 +138,30 @@ const NavItem = styled.p`
   font-size: 65px;
   margin-bottom: 35px;
   opacity: ${p => (p.open ? 1 : 0)};
+  position: relative;
+  text-shadow: ${p => p.active ? `0 0 10px ${colors.yellow}` : 'none'};
   transform: ${p => (p.open ? 'translateX(0)' : 'translateX(200%)')};
   transform-origin: center right;
   transition: all 1500ms ease;
 
+  &::after {
+    background-color: ${colors.yellow};
+    content: '';
+    height: 5px;
+    left: 0;
+    position: absolute;
+    top: 100%;
+    transition: transform 750ms cubic-bezier(0.77, 0, 0.175, 1);
+    transform: ${p => p.active ? 'scaleX(1)' : 'scaleX(0)'};
+    transform-origin: center right;
+    width: 100%;
+  }
+
   &:hover {
     text-shadow: 0 0 10px ${colors.yellow};
-    transform: scale(1.1);
-    transition: all 500ms ease;
-    transition-delay: 0;
+    &::after {
+      transform: scaleX(1);
+    }
   }
 
   ${media.down.md`
@@ -168,7 +183,7 @@ const Wrapper = styled.div`
   z-index: 20000000;
 `
 
-const Navigation = ({ angles, handlePosition, open, setOpen }) => {
+const Navigation = ({ active, angles, handlePosition, open, setOpen }) => {
   const handleClick = (location, text) => {
     handlePosition(location, text)
     setOpen(false)
@@ -181,7 +196,7 @@ const Navigation = ({ angles, handlePosition, open, setOpen }) => {
           <Logo alt='logo' open={open} src='./static/img/Logo-White.png' />
           <Main open={open}>
             {angles.map(({ location, text }, i) => (
-              <NavItem index={i} key={i} onClick={() => handleClick(location, text)} open={open}>
+              <NavItem active={active === i} index={i} key={i} onClick={() => handleClick(location, i)} open={open}>
                 {text}
               </NavItem>
             ))}

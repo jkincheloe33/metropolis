@@ -7,41 +7,48 @@ import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPa
 
 extend({ EffectComposer, RenderPass, UnrealBloomPass })
 
-function Bloom({ children, mouse, newCameraValues, ready }) {
+function Bloom({ children, newCameraValues, prevCameraValues, ready, setPrevCameraValues }) {
   const [follow, setFollow] = useState(false)
   const [scene, setScene] = useState()
   const composer = useRef()
-  const { gl, camera, size, viewport } = useThree()
-  const aspect = size.width / viewport.width
+  const groupRef = useRef(null)
+  const { gl, camera, size } = useThree()
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => void scene && composer.current.setSize(size.width, size.height), [size])
 
-  useEffect(() => setFollow(false), [newCameraValues])
+  useEffect(() => {
+    setPrevCameraValues(camera)
+    setFollow(false)
+  }, [newCameraValues])
 
-  useFrame(() => {
+  useFrame((state) => {
     scene && composer.current.render()
     const { position, rotation } = newCameraValues
 
-    camera.rotation.x = lerp(camera.rotation.x, rotation[0], 0.02)
-    camera.rotation.y = lerp(camera.rotation.y, rotation[1], 0.02)
-    camera.rotation.z = lerp(camera.rotation.z, rotation[2], 0.02)
+    if (ready && !follow && (camera.position.z === newCameraValues.position[2])) setFollow(true)
 
-    camera.position.x = lerp(camera.position.x, position[0], 0.02)
-    camera.position.y = lerp(camera.position.y, position[1], 0.02)
-    camera.position.z = lerp(camera.position.z, position[2], 0.02)
+    if (ready && groupRef?.current) {
 
-    if (ready && !follow && (camera.position.z >= position[2] - 1 || camera.position.z <= position[2] + 1)) setFollow(true)
-
-    if (follow) {
-      camera.rotation.y = lerp(camera.rotation.y, camera.rotation.y + mouse.current[0] / aspect / 15000, 0.1)
-      // camera.rotation.x = lerp(camera.rotation.x, camera.rotation.x + mouse.current[1] / aspect / 10000, 0.1)
+      camera.rotation.y = lerp(camera.rotation.y, camera.rotation.y + (state.mouse.x * Math.PI) / 130, 0.06)
     }
+
+    camera.rotation.x = lerp(prevCameraValues.rotation.x, rotation[0], 0.03)
+    camera.rotation.y = lerp(prevCameraValues.rotation.y, rotation[1], 0.03)
+    camera.rotation.z = lerp(prevCameraValues.rotation.z, rotation[2], 0.03)
+
+    camera.position.x = lerp(prevCameraValues.position.x, position[0], 0.03)
+    camera.position.y = lerp(prevCameraValues.position.y, position[1], 0.03)
+    camera.position.z = lerp(prevCameraValues.position.z, position[2], 0.03)
   }, 2)
 
   return (
     <>
-      <scene ref={setScene}>{children}</scene>
+      <scene ref={setScene}>
+        <group ref={groupRef}>
+          {children}
+        </group>
+      </scene>
       <effectComposer ref={composer} args={[gl]}>
         <renderPass attachArray='passes' scene={scene} camera={camera} />
         <unrealBloomPass attachArray='passes' args={[undefined, 1.5, 1, 0.4]} />
