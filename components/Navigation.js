@@ -84,7 +84,7 @@ const HamburgerWrapper = styled.div`
   right: 20px;
   top: 20px;
   // needed to be over react/three-drei Html
-  z-index: 20000000;
+  z-index: 20000001;
 `
 
 const Icons = styled.div`
@@ -230,7 +230,7 @@ const Navigation = ({ active, angles, handlePosition, open, setOpen }) => {
       </Wrapper>
       <HamburgerWrapper>
         <Hamburger onClick={() => setOpen(open => !open)}>
-          <HamburgerText open={open}>tap here to explore --{'>'}</HamburgerText>
+          <HamburgerText open={open}>scroll or tap here to explore --{'>'}</HamburgerText>
           <Bars>
             <Bar open={open} />
             <Bar open={open} />

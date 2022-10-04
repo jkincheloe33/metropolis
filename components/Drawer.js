@@ -1,27 +1,14 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
-import { Scramble } from '@components'
-import { api, colors, media } from '@global'
+import { colors, media } from '@global'
 
-const Column = styled.div`
-  flex: 1;
-  padding-right: 30px;
-
-  h2 {
-    color: ${colors.yellow};
-    font-size: 60px;
-    line-height: 47px;
-    margin-bottom: 35px;
-  }
-
-  img {
-    width: 100%;
-  }
-
-  ${media.down.lg`
-    display: none;
-  `}
+const Close = styled.div`
+  height: 20px;
+  left: 20px;
+  position: absolute;
+  top: 20px;
+  width: 20px;
 `
 
 const Content = styled.div`
@@ -31,35 +18,6 @@ const Content = styled.div`
   margin: 0 auto;
   max-width: 700px;
   width: 100%;
-`
-
-const Date = styled.div`
-  display: flex;
-  justify-content: space-between;
-
-  &:not(:last-of-type) {
-    margin-bottom: 27px;
-  }
-`
-
-const TourDates = styled.div`
-  height: 100%;
-  margin: 0 auto;
-  max-width: 500px;
-  overflow: auto;
-  width: 100%;
-  // scrollbars
-  -ms-overflow-style: none; /* Edge */
-  scrollbar-width: none; /* Firefox */
-
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  ${media.up.lg`
-    flex: 0 0 350px;
-  `}
 `
 
 const Wrapper = styled.div`
@@ -73,7 +31,7 @@ const Wrapper = styled.div`
   transition: all 500ms cubic-bezier(0.7, 0, 0.5, 0.5);
   transition-delay: ${p => (p.delay ? '1000ms' : 0)};
   width: 100%;
-  z-index: 1;
+  z-index: 20000000;
 
   ${p => media.up.lg`
     opacity: ${p.open ? 1 : 0};
@@ -82,8 +40,27 @@ const Wrapper = styled.div`
   `}
 `
 
-const Drawer = ({ open, showNavigation }) => {
-  const [dates, setDates] = useState([])
+const X = styled.div`
+  position: relative;
+
+  &::before, &::after {
+    background-color: ${colors.white};
+    border-radius: 5px;
+    content: '';
+    height: 2px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: rotate(45deg) translate(6px, 8px);
+    width: 20px;
+  }
+
+  &::after {
+    transform: rotate(-45deg) translate(-8px, 6px);
+  }
+`
+
+const Drawer = ({ active, component, handleClose, open, showNavigation }) => {
   const [delay, setDelay] = useState(false)
 
   useEffect(() => {
@@ -91,37 +68,15 @@ const Drawer = ({ open, showNavigation }) => {
     else setDelay(false)
   }, [open])
 
-  useEffect(() => {
-    const getTourDates = async () => {
-      const {
-        data: { data, success },
-      } = await api.get('/getTourDates')
-
-      if (success) setDates(data)
-    }
-
-    getTourDates()
-  }, [])
-
   return (
     <Wrapper delay={delay && !showNavigation} open={open && !showNavigation}>
+      {active !== 3 && (
+        <Close onClick={handleClose}>
+          <X />
+        </Close>
+      )}
       <Content>
-        <Column>
-          <h2>Tour Dates</h2>
-          <img alt='' src='./static/img/live.JPG' />
-        </Column>
-        <TourDates>
-          {dates.length > 0 ? (
-            dates.map(({ datetime, url, venue }, i) => (
-              <Date key={i}>
-                <Scramble link={url} open={open} text={`${venue.location}`} />
-                <Scramble link={url} open={open} text={datetime.split('T')[0]} />
-              </Date>
-            ))
-          ) : (
-            <Scramble open={open} text='No current tour dates' />
-          )}
-        </TourDates>
+        {component && component}
       </Content>
     </Wrapper>
   )

@@ -23,6 +23,7 @@ export { default as Megatron } from './Megatron'
 export { default as Merch } from './Merch'
 export { default as Navigation } from './Navigation'
 export { default as Tour } from './Tour'
+export { default as TourDates } from './TourDates'
 export { default as Watch } from './Watch'
 
 // scene

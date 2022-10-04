@@ -10,11 +10,36 @@ export const merchData = [
 ]
 
 export const watchData = [
-  'https://www.youtube.com/watch?v=1FPw0E44LDc',
-  'https://www.youtube.com/watch?v=-vwRwvXc2qM',
-  'https://www.youtube.com/watch?v=Ps4WZkcNDkc',
-  'youtube.com/watch?v=7uJ_8BVmQHQ',
-  'https://www.youtube.com/watch?v=SUL-KwIaSpI',
-  'https://www.youtube.com/watch?v=bu8MW33pYe4',
-  'https://www.youtube.com/watch?v=nEWvTAS34rw',
+  {
+    image: './static/img/liar.png',
+    url: 'https://www.youtube.com/watch?v=cHbMV0rNrhA'
+  },
+  {
+    image: './static/img/secret.png',
+    url: 'https://www.youtube.com/watch?v=1FPw0E44LDc'
+  },
+  {
+    image: './static/img/mad.png',
+    url: 'https://www.youtube.com/watch?v=-vwRwvXc2qM'
+  },
+  {
+    image: './static/img/bury-my-flame.png',
+    url: 'https://www.youtube.com/watch?v=Ps4WZkcNDkc'
+  },
+  {
+    image: './static/img/misery-game.png',
+    url: 'youtube.com/watch?v=7uJ_8BVmQHQ'
+  },
+  {
+    image: './static/img/back-and-forth.png',
+    url: 'https://www.youtube.com/watch?v=SUL-KwIaSpI'
+  },
+  {
+    image: './static/img/soul-without-a-home.png',
+    url: 'https://www.youtube.com/watch?v=bu8MW33pYe4'
+  },
+  {
+    image: './static/img/silent-prey.png',
+    url: 'https://www.youtube.com/watch?v=nEWvTAS34rw'
+  },
 ]

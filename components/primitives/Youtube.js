@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { useRef } from 'react'
 import styled from 'styled-components'
-
-import { colors } from '@global'
 
 const VideoWrapper = styled.iframe`
   display: block;
@@ -11,11 +9,10 @@ const VideoWrapper = styled.iframe`
   height: 100%;
   width: 100%;
   position: absolute;
+  touch-action: auto;
 `
 
 const Wrapper = styled.div`
-  box-shadow: 0 0 15px ${colors.berry};
-  overflow: hidden;
   padding-bottom: 56.25%;
   position: relative;
   height: 0;
@@ -23,6 +20,8 @@ const Wrapper = styled.div`
 `
 
 const Youtube = ({ autoplay, className, url }) => {
+  const ref = useRef(null)
+
   // gets the ID and concats to the embed URL format
   const getEmbedLink = (autoplay, url) => {
     const regExp = /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|&v(?:i)?=))([^#&?]*).*/
@@ -41,8 +40,11 @@ const Youtube = ({ autoplay, className, url }) => {
         frameBorder='0'
         allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
         allowFullScreen
+        ref={ref}
         title='Youtube'
-      />
+      >
+        <div />
+      </VideoWrapper>
     </Wrapper>
   )
 }
