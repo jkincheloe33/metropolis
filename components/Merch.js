@@ -1,4 +1,4 @@
-import { Suspense } from 'react'
+import { forwardRef, Suspense } from 'react'
 import { Html } from '@react-three/drei'
 import styled from 'styled-components'
 
@@ -35,12 +35,12 @@ const Wrapper = styled.div`
   `}
 `
 
-const Merch = ({ active }) => {
+const Merch = forwardRef(({ active }, ref) => {
   return (
     <>
       <mesh position={[63.8, 11, -125]}>
         <Html>
-          <Wrapper active={active}>
+          <Wrapper active={active} ref={ref}>
             {merchData.map(({ link, src }, i) => (
               <Shirt href={link} key={i} src={src} target='_blank' />
             ))}
@@ -77,6 +77,8 @@ const Merch = ({ active }) => {
       </Suspense>
     </>
   )
-}
+})
+
+Merch.displayName = 'Merch'
 
 export default Merch

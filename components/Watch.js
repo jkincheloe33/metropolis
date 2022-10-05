@@ -1,11 +1,21 @@
-import { Suspense } from 'react'
+import { forwardRef, Suspense, useEffect } from 'react'
 import { Html } from '@react-three/drei'
 import styled from 'styled-components'
 
-import { CustomText, Youtube } from '@components'
+import { CustomText } from '@components'
 import { colors, media, watchData } from '@global'
 
+const Image = styled.div`
+  background: url(${p => p.image}) no-repeat;
+  background-size: cover;
+  box-shadow: 0 0 15px ${colors.berry};
+  height: 41vw;
+  max-height: 165px;
+  width: 100%;
+`
+
 const Row = styled.div`
+  cursor: pointer;
   padding-bottom: 30.6px;
   width: 100%;
 `
@@ -28,15 +38,15 @@ const Wrapper = styled.div`
   `}
 `
 
-const Watch = ({ active }) => {
+const Watch = forwardRef(({ active, setYoutubeData }, ref) => {
   return (
     <>
       <mesh position={[-100, 80, 12]}>
         <Html>
-          <Wrapper active={active}>
-            {watchData.map((data, i) => (
+          <Wrapper active={active} ref={ref}>
+            {watchData.map(({ image, url }, i) => (
               <Row key={i}>
-                <Youtube url={data} />
+                <Image image={image} onClick={() => setYoutubeData(url)} />
               </Row>
             ))}
           </Wrapper>
@@ -45,7 +55,6 @@ const Watch = ({ active }) => {
       <Suspense fallback={null}>
         <CustomText
           color={colors.aqua}
-          // fontFamily='./static/text/neon.json'
           height={5}
           position={[108, 50, -104]}
           rotation={[0, 2.1, 0]}
@@ -56,6 +65,8 @@ const Watch = ({ active }) => {
       </Suspense>
     </>
   )
-}
+})
+
+Watch.displayName = 'Watch'
 
 export default Watch

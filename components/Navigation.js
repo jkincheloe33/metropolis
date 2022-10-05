@@ -1,7 +1,8 @@
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 import { FacebookIcon, InstagramIcon, SpotifyIcon, TikTokIcon, TwitterIcon, YoutubeIcon } from '@components'
-import { colors, media } from '@global'
+import { colors, media, sizes } from '@global'
 
 // prettier-ignore
 const Bar = styled.div`
@@ -83,8 +84,8 @@ const HamburgerWrapper = styled.div`
   position: fixed;
   right: 20px;
   top: 20px;
-  // needed to be over react/three-drei Html
-  z-index: 20000000;
+  // needed to be over react/three-drei Html and Drawer component
+  z-index: 20000001;
 `
 
 const Icons = styled.div`
@@ -184,6 +185,12 @@ const Wrapper = styled.div`
 `
 
 const Navigation = ({ active, angles, handlePosition, open, setOpen }) => {
+  const [windowSize, setWindowSize] = useState(0)
+
+  useEffect(() => {
+    setWindowSize(window.innerWidth)
+  }, [])
+
   const handleClick = (location, text) => {
     handlePosition(location, text)
     setOpen(false)
@@ -230,7 +237,7 @@ const Navigation = ({ active, angles, handlePosition, open, setOpen }) => {
       </Wrapper>
       <HamburgerWrapper>
         <Hamburger onClick={() => setOpen(open => !open)}>
-          <HamburgerText open={open}>tap here to explore --{'>'}</HamburgerText>
+          <HamburgerText open={open}>{windowSize <= sizes.up.md ? 'scroll or ' : ''}tap here to explore --{'>'}</HamburgerText>
           <Bars>
             <Bar open={open} />
             <Bar open={open} />
