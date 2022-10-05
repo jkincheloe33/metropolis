@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { forwardRef, useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 import { Scramble } from '@components'
@@ -62,7 +62,7 @@ const Dates = styled.div`
   `}
 `
 
-const TourDates = () => {
+const TourDates = forwardRef((_, ref) => {
   const [dates, setDates] = useState([])
 
   useEffect(() => {
@@ -83,7 +83,7 @@ const TourDates = () => {
         <h2>Tour Dates</h2>
         <img alt='' src='./static/img/live.JPG' />
       </Column>
-      <Dates>
+      <Dates ref={ref}>
         {dates.length > 0 ? (
           dates.map(({ datetime, url, venue }, i) => (
             <Date key={i}>
@@ -97,6 +97,8 @@ const TourDates = () => {
       </Dates>
     </>
   )
-}
+})
+
+TourDates.displayName = 'TourDates'
 
 export default TourDates

@@ -102,7 +102,7 @@ const CityScene = () => {
 
   useEffect(() => {
     if (active === 3) {
-      setDrawerComponent(<TourDates />)
+      setDrawerComponent(<TourDates ref={refs.current[2]} />)
       setShowDrawer(true)
     } else {
       setShowDrawer(false)
