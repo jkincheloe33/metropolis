@@ -13,9 +13,10 @@ const VideoWrapper = styled.iframe`
 `
 
 const Wrapper = styled.div`
+  align-self: center;
+  height: 0;
   padding-bottom: 56.25%;
   position: relative;
-  height: 0;
   width: 100%;
 `
 

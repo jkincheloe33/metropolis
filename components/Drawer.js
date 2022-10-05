@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { colors, media } from '@global'
 
 const Close = styled.div`
+  cursor: pointer;
   height: 20px;
   left: 20px;
   position: absolute;
@@ -31,6 +32,7 @@ const Wrapper = styled.div`
   transition: all 500ms cubic-bezier(0.7, 0, 0.5, 0.5);
   transition-delay: ${p => (p.delay ? '1000ms' : 0)};
   width: 100%;
+  // needed to be over react/three-drei Html
   z-index: 20000000;
 
   ${p => media.up.lg`
@@ -45,26 +47,36 @@ const X = styled.div`
 
   &::before, &::after {
     background-color: ${colors.white};
-    border-radius: 5px;
+    border-radius: 12px;
+    box-shadow: 0 0 5px ${colors.yellow};
     content: '';
     height: 2px;
     left: 0;
+    opacity: ${p => p.open ? 1 : 0};
     position: absolute;
     top: 0;
-    transform: rotate(45deg) translate(6px, 8px);
+    transform: translate(6px, 8px);
+    transition: all 1000ms ease;
+    transform: translate(-3px, 8px);
     width: 20px;
   }
 
-  &::after {
-    transform: rotate(-45deg) translate(-8px, 6px);
-  }
+  ${p => p.open && `
+    &::before {
+      transform: rotate(45deg) translate(6px, 8px);
+    }
+
+    &::after {
+      transform: rotate(-45deg) translate(-8px, 6px);
+    }
+  `}
 `
 
 const Drawer = ({ active, component, handleClose, open, showNavigation }) => {
   const [delay, setDelay] = useState(false)
 
   useEffect(() => {
-    if (open) setDelay(true)
+    if (open && active === 3) setDelay(true)
     else setDelay(false)
   }, [open])
 
@@ -72,7 +84,7 @@ const Drawer = ({ active, component, handleClose, open, showNavigation }) => {
     <Wrapper delay={delay && !showNavigation} open={open && !showNavigation}>
       {active !== 3 && (
         <Close onClick={handleClose}>
-          <X />
+          <X open={open} />
         </Close>
       )}
       <Content>

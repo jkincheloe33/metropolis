@@ -27,7 +27,7 @@ const angles = [
 
 const CityScene = () => {
   const [active, setActive] = useState(0)
-  const [cameraValues, setCameraValues] = useState({ position: [26, 40, -90], rotation: [-0.5, -1.8, 0] })
+  const [cameraValues, setCameraValues] = useState({ position: [0, 90, -72], rotation: [-1.25, -0.75, -1] })
   const [drawerComponent, setDrawerComponent] = useState(null)
   const [objectLoaded, setObjectLoaded] = useState(false)
   const [newCameraValues, setNewCameraValues] = useState(cameraValues)
