@@ -24,15 +24,6 @@ const Column = styled.div`
   `}
 `
 
-const Content = styled.div`
-  align-items: flex-start;
-  display: flex;
-  height: 100%;
-  margin: 0 auto;
-  max-width: 700px;
-  width: 100%;
-`
-
 const Date = styled.div`
   display: flex;
   justify-content: space-between;

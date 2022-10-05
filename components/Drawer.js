@@ -76,6 +76,7 @@ const Drawer = ({ active, component, handleClose, open, showNavigation }) => {
   const [delay, setDelay] = useState(false)
 
   useEffect(() => {
+    // we want the delay on Tour
     if (open && active === 3) setDelay(true)
     else setDelay(false)
   }, [open])
