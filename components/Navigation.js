@@ -189,7 +189,6 @@ const Navigation = ({ active, angles, handlePosition, open, setOpen }) => {
 
   useEffect(() => {
     setWindowSize(window.innerWidth)
-    console.log(window.innerWidth)
   }, [])
 
   const handleClick = (location, text) => {
