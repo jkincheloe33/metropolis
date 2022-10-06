@@ -62,8 +62,13 @@ const CityScene = () => {
     if (ref) {
       const { clientHeight, scrollHeight, scrollTop } = ref?.current || {}
       const distance = scrollHeight - clientHeight - 1
+      const height = ref?.current.getBoundingClientRect().height
 
-      if (scrollTop <= 0) {
+      // if container doesn't scroll, set both to true
+      if (height === scrollHeight) {
+        scroll.down = true
+        scroll.up = true
+      } else if (scrollTop <= 0) {
         scroll.down = false
         scroll.up = true
       } else if (scrollTop >= distance) {
@@ -81,12 +86,14 @@ const CityScene = () => {
     const yEnd = e.changedTouches?.[0].clientY ?? e.screenY
     const yDifference = yEnd - current.yDown
 
-    if (yDifference >= 50 && active !== 0 && scroll.up) {
+    if (yDifference >= 50 && scroll.up) {
       scroll.down = true
+      if (active === 0) return handlePosition(angles[angles.length - 1].location, angles.length - 1)
       return handlePosition(angles[active - 1].location, active - 1)
     }
-    if (yDifference <= -50 && active !== angles.length - 1 && scroll.down) {
+    if (yDifference <= -50 && scroll.down) {
       scroll.up = true
+      if (active === angles.length - 1) return handlePosition(angles[0].location, 0)
       return handlePosition(angles[active + 1].location, active + 1)
     }
   }
